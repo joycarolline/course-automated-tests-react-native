@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Curso de Testes Automatizados com Jest e React Native Testing Library (RNTL)",
   "main": "index.js",
+  "type": "commonjs",
   "directories": {
     "example": "examples"
   },
@@ -13,7 +14,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^29.6.2"
+    "jest": "^29.6.2",
+    "node-notifier": "^10.0.1"
   },
   "dependencies": {
     "axios": "^1.4.0"
