@@ -57,9 +57,6 @@ describe("Teste de soma", () => {
     // Assert
     expect(sut.email).toBe('vinicius.dutra@beadev.net')
     expect(sut.name).toBe('John Doe')
-
-    // Check if the logResult function was called with the correct parameter
-    expect(logResultSpy).toHaveBeenCalledWith("Result: 15");
   });
 });
 

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+RED_COLOR="\033[0;31m"
+NO_COLOR="\033[0m"
+
+npm test -- --coverage
+
+if [ $? -ne 0 ]; then # Verifica se o retorno do comando anterior é diferente de 0
+  echo "\n"
+  echo "❌ ${RED_COLOR}Test failed. Commit aborted.${NO_COLOR} ❌"
+  echo "\n"
+  exit 1
+fi

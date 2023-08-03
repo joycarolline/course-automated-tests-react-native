@@ -1,5 +1,6 @@
 node_modules/
 log.txt
+coverage/
 
 # Slides
 Módulo 1 - Introdução a Testes Automatizados.pdf

@@ -6,7 +6,7 @@ function sum(a, b) {
   });
 }
 
-//jest.setTimeout(5000);
+jest.setTimeout(5000);
 
 it(`test TimeOut`, async () => {
   // Arrange
