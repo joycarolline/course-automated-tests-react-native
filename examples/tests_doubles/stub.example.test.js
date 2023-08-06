@@ -1,4 +1,4 @@
-const { getUserData } = require('./user');
+const { getUserData } = require("./user");
 
 // Cria um stub para simular a chamada à API
 jest.mock("./user", () => ({
@@ -19,7 +19,7 @@ describe("getUserData function", () => {
     expect(userData).toEqual({
       id: 1,
       name: "John Doe",
-      email: "john.doe@example.com",
+      email: "john.doe@example.comx",
     });
   });
 });
