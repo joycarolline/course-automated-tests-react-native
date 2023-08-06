@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+COMMIT_MSG_FILE=$1
+
+message="$(cat $COMMIT_MSG_FILE)"
+
+requiredPattern="^(feat|test|chore|bugfix|hotfix|docs|refactor)\: \w+"
+mergePattern="^(Merge branch '.*' into .*)"
+
+if ! (echo "$message" | grep -Eq "$requiredPattern") && ! (echo "$message" | grep -Eq "$mergePattern");
+then
+    echo "\033[0;33mWrong commit message!\033[0m"
+    echo "\033[0;31m❌ - $message\033[0m"
+    echo "\033[0;32m✅ + feat: Configure pre-hooks commits\033[0m"
+    exit 1
+fi;                                                                                      
