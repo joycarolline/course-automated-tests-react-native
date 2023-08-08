@@ -1,7 +1,7 @@
 # Iniciando um Projeto do Zero
 
 ```sh
-npx create-expo-app <nome-do-projeto>
+npx react-native@latest init <nome-do-projeto>
 cd <nome-do-projeto>
 ```
 
@@ -26,5 +26,5 @@ Crie o arquivo `jest.config.js` e adicione:
 ```sh
 npm install @react-navigation/native @react-navigation/native-stack
 
-npx expo install react-native-screens react-native-safe-area-context
+npm install react-native-screens react-native-safe-area-context
 ```
