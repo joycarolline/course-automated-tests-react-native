@@ -22,4 +22,13 @@ Abra com `CTRL+P` e digite `> open user settings (json)`
 }
 ```
 
-> Baixe essa extensão para formatar quando salvar, **emeraldwalk.RunOnSave** / https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave
+Instale:
+```
+emeraldwalk.RunOnSave
+https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave
+```
+
+```
+ms-vsliveshare.vsliveshare
+https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare
+```
