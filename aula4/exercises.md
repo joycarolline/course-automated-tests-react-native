@@ -29,7 +29,8 @@ Após o usuário fazer seu cadastro, ele será redirecionado para a tela de list
 
 > \* Obrigatórios
 
-Após o cadastro da nova tarefa, redireciona-lo para listagem de TODO's mostrando sua nova tarefa.
+Após o cadastro da nova tarefa, redireciona-lo para listagem de TODO's mostrando sua nova tarefa. Um detalhe importante é que o usuário pode `ordenar` suas tarefas e o App deve manter a ordem feita pelo usuário.  
+As `tarefas em atraso` devem sempre aparecer no `topo da ordenação`
 
 
 **Os status de uma tarefa são:**
