@@ -18,8 +18,8 @@ Com a vida moderna movimentada e repleta de compromissos, é comum sentir-se sob
 
 O App deve garantir que seja fácil para um usuário no seu primeiro acesso cadastrar sua nova conta, informando apenas:
 - `email`* (minímo de 10 digitos e máximo de 50 digitos)
-- `senha`* (minímo de 8 digitos e máximo de 50 digitos)
-- `data de nascimento`* (o usuário não deve possuir mais que 122 anos)
+- `senha`* (minímo de 8 digitos e máximo de 50 digitos deve haver pelo menos 1 numero e pelo menos 1 letra maiuscula)
+- `data de nascimento`* (o usuário não deve possuir mais que 122 anos e nem menos que 8 anos)
 
 > \* Obrigatórios
 
