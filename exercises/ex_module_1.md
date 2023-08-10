@@ -3,19 +3,26 @@
 ## 📚 Teórico
 
 #### Exercício 1 - O que é o Jest e Como podemos chama-lo?
-R: 
+R: O jest é um test runner assim como um framework tambem
 
 #### Exercício 2 - O que é regressão? Cite um exemplo que você já tenha vivenciado
-R: 
+R: Refere-se à ocorrência de falhas em um software após a introdução de novas alterações ou correções no código. 
+Ex:
+"Inclusão de botão novo na página, o botão voltar e garantir que este botão não vai quebrar a tela e garantir que ele vai funcionar."
 
 #### Exercício 3 - O que é Integração Contínua e como os Testes Automatizados ajudam?
-R: 
+R: Integração Contínua é uma prática que se concentra em combinar o código-fonte criado por diferentes desenvolvedores em um único lugar central, várias vezes ao dia. 
+
+Testes automatizados garantem que a alteração é testada automaticamente para garantir que não cause problemas no projeto como um todo (minimizar erros).
 
 #### Exercício 4 - Quais são as etapas dentro da metódologia TDD (Test-Driven Development)? Explique cada uma delas.
-R: 
+R:
+- Red - Escrever o teste pensando na implementação
+- Green - Escrever a implementação para fazer o teste passar
+- Refactor - Melhorar a implementação ou o teste para ficar mais manutenivel ou mais performatico.
 
 #### Exercício 5 - Dentro de um cenário de teste encontrei o termo `sut` dentro do `// Act`, o que significa?
-R: 
+R: System Under Test - O sistema que a gente testando naquele teste especifico.
 
 #### Exercício 6 - Para que server o SetUp e Teardown em um framework de teste? Cite as funçōes que alcaçam esse resultado no `Jest`.
 R: 
