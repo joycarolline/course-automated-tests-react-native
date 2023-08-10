@@ -1,7 +1,9 @@
 const User = require("./user");
 
 test(`
-  Dado que o usuário informa o email, senha e data de nascimento
+  Dado que o usuário informa o email
+    E a senha 
+    E a data de nascimento
   Quando eu instanciar um novo usuário
   Então estar com os dados corretos
 `, () => {
@@ -112,7 +114,8 @@ test(`
 });
 
 test(`
-  Dado que o usuário informa a senha contendo 8 digitos e uma letra maiúscula e sem um número
+  Dado que o usuário informa a senha contendo 8 digitos 
+    E uma letra maiúscula e sem um número
   Quando eu instanciar um novo usuário
   Então devo emitir um erro informando que a senha é inválida
 `, () => {
@@ -205,4 +208,29 @@ test(`
 
     // Assert
   }).toThrow("Data de nascimento inválida, maior que 122 anos");
+});
+
+test(`
+  Dado que o usuário informa a data de nascimento (28/12) igual a data de aniversário (28/12)
+  Quando eu instanciar um novo usuário
+  Então devo emitir uma mensagem "Parabéns pelo seu Dia! 🎊"
+`, () => {
+  jest.useFakeTimers({
+    now: new Date("2023-12-28"),
+  });
+
+  // Arrange
+  const email = "teste@gmail.com";
+  const senha = "Senha123";
+  const dataNascimento = "1996-12-28";
+
+  // Act
+  const sut = new User({
+    email: email,
+    senha: senha,
+    dataNascimento: dataNascimento,
+  });
+
+  // Assert
+  expect(sut.getHappyBirthday()).toBe("Parabéns pelo seu Dia! 🎊");
 });

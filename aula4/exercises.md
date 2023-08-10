@@ -24,8 +24,8 @@ O App deve garantir que seja fácil para um usuário no seu primeiro acesso cada
 > \* Obrigatórios
 
 Após o usuário fazer seu cadastro, ele será redirecionado para a tela de listagem de TODO's, e nesta tela ele pode como (Usuário Autenticado) clicar no botão adicionar nova tarefa e informar:
-- `nome da tarefa`*
-- `data limite`*
+- `nome da tarefa`* (minimo 3 letras e no maximo 120 letras)
+- `data limite`* (se for uma data limite retroativa deve preencher um campo `justificativa` minimo 5 letras e máximo 200 letras)
 
 > \* Obrigatórios
 

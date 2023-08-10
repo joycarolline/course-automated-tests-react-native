@@ -55,6 +55,20 @@ class User {
 
     return dataNascimento;
   }
+
+  getHappyBirthday() {
+    const today = new Date();
+    const dataNascimentoFormatada = new Date(this.dataNascimento);
+    const isDayEqual = today.getDate() === dataNascimentoFormatada.getDate();
+    const isMonthEqual =
+      today.getMonth() === dataNascimentoFormatada.getMonth();
+
+    if (isDayEqual && isMonthEqual) {
+      return "Parabéns pelo seu Dia! 🎊";
+    }
+
+    return null;
+  }
 }
 
 module.exports = User;
