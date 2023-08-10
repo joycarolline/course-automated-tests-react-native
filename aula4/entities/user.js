@@ -1,4 +1,5 @@
-const { differenceInYears } = require("date-fns");
+//const { differenceInYears } = require("date-fns");
+import { differenceInYears } from "date-fns";
 
 class User {
   constructor({ email, senha, dataNascimento }) {
@@ -69,6 +70,14 @@ class User {
 
     return null;
   }
+
+  async getApi() {
+    const res = await fetch("https://api.github.com/orgs/beadev-net/repos");
+
+    console.log(await res.json());
+  }
 }
 
-module.exports = User;
+export default User;
+
+//module.exports = User;

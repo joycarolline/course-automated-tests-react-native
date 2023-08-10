@@ -1,4 +1,6 @@
-const User = require("./user");
+//const User = require("./user");
+import { jest } from "@jest/globals";
+import User from "./user";
 
 test(`
   Dado que o usuário informa o email

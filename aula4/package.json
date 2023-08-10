@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "//": "below we force node to use es6 modules",
+  "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:es6": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "keywords": [],
   "author": "",
