@@ -24,12 +24,27 @@ R:
 #### Exercício 5 - Dentro de um cenário de teste encontrei o termo `sut` dentro do `// Act`, o que significa?
 R: System Under Test - O sistema que a gente testando naquele teste especifico.
 
-#### Exercício 6 - Para que server o SetUp e Teardown em um framework de teste? Cite as funçōes que alcaçam esse resultado no `Jest`.
-R: 
+#### Exercício 6 - Para que serve o SetUp e Teardown em um framework de teste? Cite as funçōes que alcaçam esse resultado no `Jest`.
+R: O SetUp serve para inicializar dependencias, variaveis, constantes, objetos e mocks que são utilizados nos testes.
+O Teardown serve para resetar as dependencias, variaveis, constantes, objetos e mocks.
+
+- `BeforeEach` - Roda **antes de cada teste** dentro de um escopo do `describe` ou no escopo do `arquivo de teste`
+- `BeforeAll` - Roda **antes de todos os teste** dentro de um escopo do `describe` ou no escopo do `arquivo de teste`
+- `AfterEach` - Roda **depois de cada teste** dentro de um escopo do `describe` ou no escopo do `arquivo de teste`
+- `AfterAll` - Roda **depois de todos os testes** dentro de um escopo do `describe` ou no escopo do `arquivo de teste`
 
 #### Exercício 7 - Qual a diferença entre `Mock`, `Spy`, `Stub`, `Dummy` e `Fake`?
+R: 
+- `Mock`: O mock serve para criar um objeto simulado ao invés de utilizar a implementação real. (casos de uso: substituir a a implementação de uma SDK de terceiros).
+- `Spy`: O Espião que serve para escutar metódos dentro de uma classe ou arquivo, e serve para verificar detalhes de implementação.
+- `Stub`: O stub é um tipo de dublê de teste que retorna um valor definido. (casos de uso: a resposta em JSON de uma API de terceiro).
+- `Dummy`: Objeto simulado que é passado como parâmetro, mas nunca usado pelo componente em teste.
+- `Fake`: Objeto simulado substitui uma dependência externa por uma implementação simplificada.
 
 #### Exercício 8 - Quais são os tipos de Testes Automatizados? Explique cada um deles.
+- `e2e`: ele serve para testar um fluxo ponta-a-ponta, o que quer dizer que normalmente ele simular a ação de um usuário no frontend e essa ação reflete por toda a aplicação.
+- `integração`: serve para validar se as integraçōes com outros softwares estão funcionando corretamente.
+- `unitário`: serve para validar o comportamento ou output de uma unidade dentro do software em desenvolvimento.
 
 ---
 

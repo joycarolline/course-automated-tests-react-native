@@ -42,12 +42,12 @@ test("Invoice - Adicionar LineItem Dummy Object", () => {
   const expectItem = new LineItem(invoice, product, QUANTITY);
 
   // Act
-  invoice.addItemQuantity(product, QUANTITY);
+  const sut = invoice.addItemQuantity(product, QUANTITY);
 
   // Assert
   const lineItems = invoice.getLineItems();
   expect(lineItems.length).toBe(1);
-  
+
   const actual = lineItems[0];
   expect(actual.invoice).toBe(expectItem.invoice);
   expect(actual.product).toBe(expectItem.product);
