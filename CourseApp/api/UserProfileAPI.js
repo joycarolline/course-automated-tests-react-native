@@ -1,9 +1,9 @@
-import axios from "axios";
-import { backendEndpoint } from "./Api.config";
+import axios from 'axios';
+import {backendEndpoint} from './api.config';
 
-const userEndpoint = "/api/users";
+const userEndpoint = '/api/users';
 
-const getUserProfile = async (userId) => {
+const getUserProfile = async userId => {
   try {
     const response = await backendEndpoint.get(`${userEndpoint}/${userId}`);
     return response.data;
@@ -12,4 +12,4 @@ const getUserProfile = async (userId) => {
   }
 };
 
-export { getUserProfile };
+export {getUserProfile};

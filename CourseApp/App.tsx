@@ -1,14 +1,20 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, Text} from 'react-native';
+import React, {useEffect} from 'react';
+import {StatusBar, Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import SplashScreen from 'react-native-splash-screen';
 import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import {Screen} from 'react-native-screens';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 300);
+  }, []);
+
   return (
     <>
       <StatusBar />

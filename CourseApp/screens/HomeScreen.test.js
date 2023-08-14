@@ -1,4 +1,4 @@
-import {render, screen, fireEvent} from '@testing-library/react-native';
+import { render, screen, fireEvent } from '@testing-library/react-native';
 import HomeScreen from './HomeScreen';
 
 test(`
@@ -21,5 +21,5 @@ test(`
   fireEvent.press(sut);
 
   // Assert
-  expect(navigateMock.navigate).toBeCalledWith('Profile', {name: 'Vinicius'});
+  expect(navigateMock.navigate).toBeCalledWith('Profile', { name: 'Vinicius' });
 });

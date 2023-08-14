@@ -1,7 +1,7 @@
-import { jest } from "@jest/globals";
-import { getUserProfile } from "./UserProfileAPI";
-import axios from "axios";
-import { backendEndpoint } from "./Api.config";
+import {jest} from '@jest/globals';
+import {getUserProfile} from './UserProfileAPI';
+import axios from 'axios';
+import {backendEndpoint} from './api.config';
 
 // jest.mock("axios", () => {
 //   const originalAxios = jest.requireActual("axios");
@@ -11,14 +11,14 @@ import { backendEndpoint } from "./Api.config";
 //   };
 // });
 
-jest.mock("./Api.config", () => {
+jest.mock('./Api.config', () => {
   return {
     backendEndpoint: {
       get: () => ({
         data: {
           id: 1,
-          name: "John Doe",
-          email: "john@doe.com",
+          name: 'John Doe',
+          email: 'john@doe.com',
         },
       }),
     },
@@ -44,7 +44,7 @@ it(`Given an user is logged in
   // Assert
   expect(userProfile).toEqual({
     id: 1,
-    name: "John Doe",
-    email: "john@doe.com",
+    name: 'John Doe',
+    email: 'john@doe.com',
   });
 });

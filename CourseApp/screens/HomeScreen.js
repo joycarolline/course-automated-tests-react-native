@@ -1,18 +1,29 @@
-import {StyleSheet, Text, View, Button} from 'react-native';
-import DoubleNumber from '../components/DoubleNumber';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import TodoList from '../components/TodoList';
+import { getTodoList } from '../api/todo.api';
+import { useEffect, useState } from 'react';
 
-export default function HomeScreen({navigation}) {
+export default HomeScreen = ({ navigation }) => {
+  const [todoList, setTodoList] = useState([]);
+
+  useEffect(() => {
+    const fetchTodoList = async () => {
+      const todoList = await getTodoList();
+      setTodoList(todoList);
+    };
+    fetchTodoList();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Bem-Vindo!</Text>
-      <DoubleNumber num={10} />
       <Button
         title="Acessar seu Perfil"
-        onPress={() => navigation.navigate('Profile', {name: 'Vinicius'})}
+        onPress={() => navigation.navigate('Profile', { name: 'Vinicius' })}
       />
+      <TodoList list={todoList} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
