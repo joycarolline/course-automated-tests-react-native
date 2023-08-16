@@ -18,7 +18,7 @@ const limitTitle = (title: string) => {
   return title;
 };
 
-const TodoItem = ({ item }: Props) => {
+const TodoItem = ({ item }: Props): JSX.Element => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (

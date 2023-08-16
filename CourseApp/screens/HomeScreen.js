@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import TodoList from '../components/TodoList';
 import { getTodoList } from '../api/todo.api';
 import { useEffect, useState } from 'react';
+import DateClock from '../components/DateClock';
 
 export default HomeScreen = ({ navigation }) => {
   const [todoList, setTodoList] = useState([]);
@@ -16,6 +17,7 @@ export default HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <DateClock />
       <Button
         title="Acessar seu Perfil"
         onPress={() => navigation.navigate('Profile', { name: 'Vinicius' })}
