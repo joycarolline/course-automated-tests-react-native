@@ -11,7 +11,10 @@ const Form = ({children, buttonText, onSubmit}: PropsWithChildren<IProps>) => {
     <View style={styles.container}>
       {children}
 
-      <TouchableOpacity onPress={onSubmit} style={styles.button}>
+      <TouchableOpacity
+        onPress={onSubmit}
+        style={styles.button}
+        accessibilityLabel="Botão de entrar">
         <Text style={styles.buttonText}>{buttonText}</Text>
       </TouchableOpacity>
     </View>

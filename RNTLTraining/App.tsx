@@ -1,59 +1,22 @@
-import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
-import Input from './components/Input';
-import Form from './components/Form';
-import {login} from './api/login';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import LoginScreen from './screens/LoginScreen';
+import HomeScreen from './screens/HomeScreen';
+
+const Stack = createNativeStackNavigator();
+
+console.log(Stack);
 
 const App = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = async () => {
-    for (let i = 0; i < 100; i++) {
-      const res = await login('Admin', 'admin');
-    }
-  };
-
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}>
-        <Image
-          source={require('./assets/logo.png')}
-          style={{width: 300, height: 250}}
-        />
-        <Form buttonText="Entrar" onSubmit={handleLogin}>
-          <Input
-            label="E-mail"
-            onChangeText={text => setEmail(text)}
-            value={email}
-          />
-          <Input
-            label="Senha"
-            onChangeText={text => setPassword(text)}
-            value={password}
-            secureTextEntry
-          />
-        </Form>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-  },
-});
 
 export default App;

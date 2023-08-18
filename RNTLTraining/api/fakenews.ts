@@ -1,13 +1,9 @@
 import axios from 'axios';
 
-export const login = async (email: string, password: string) => {
+export const fakenews = async (token: string) => {
   try {
-    const response = await axios.post(
-      'http://localhost:7878/api/login',
-      JSON.stringify({
-        email: email,
-        password: password,
-      }),
+    const response = await axios.get(
+      `http://localhost:7878/api/fakenews?token=${token}`,
       {
         headers: {
           'Content-Type': 'application/json',
