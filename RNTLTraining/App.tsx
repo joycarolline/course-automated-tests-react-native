@@ -4,7 +4,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Login: undefined;
+  Home: {token: string};
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 console.log(Stack);
 

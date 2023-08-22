@@ -1,6 +1,16 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 
-export const login = async (email: string, password: string) => {
+type LoginResponse = {
+  data?: {
+    message?: string;
+  };
+  token?: string;
+};
+
+export const login = async (
+  email: string,
+  password: string,
+): Promise<LoginResponse> => {
   try {
     const response = await axios.post(
       'http://localhost:7878/api/login',
@@ -16,10 +26,10 @@ export const login = async (email: string, password: string) => {
       },
     );
 
-    return response.data;
+    return response.data as LoginResponse;
   } catch (e: any) {
     if (axios.isAxiosError(e)) {
-      return e.response;
+      return e.response as LoginResponse;
     }
 
     return e.message;

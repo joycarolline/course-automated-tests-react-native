@@ -16,7 +16,9 @@ import {useNavigation} from '@react-navigation/native';
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigation = useNavigation();
+  const navigation = useNavigation<{
+    navigate: (screen: string, params?: {token: string}) => void;
+  }>();
 
   const handleLogin = async () => {
     const res = await login(email, password);

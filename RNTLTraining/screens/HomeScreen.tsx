@@ -8,7 +8,7 @@ import {
   Text,
 } from 'react-native';
 import {fakenews} from '../api/fakenews';
-import {useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 
 type FakeNews = {
   id: string;
@@ -58,9 +58,15 @@ const Item = ({fields}: ItemProps) => {
   );
 };
 
+type ParamList = {
+  Home: {
+    token: string;
+  };
+};
+
 const HomeScreen = () => {
   const [listFakeNews, setListFakeNews] = useState<FakeNews[]>([]);
-  const {params} = useRoute() as any;
+  const {params} = useRoute<RouteProp<ParamList, 'Home'>>();
 
   useEffect(() => {
     const getFakeNews = async () => {

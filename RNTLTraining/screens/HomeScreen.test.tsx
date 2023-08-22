@@ -1,7 +1,8 @@
-import {render, screen, act, waitFor} from '@testing-library/react-native';
+import {render, screen, waitFor, act} from '@testing-library/react-native';
 import HomeScreen from './HomeScreen';
 import fakenewsstub from '../api/fakenews-stub.json';
 import axios from 'axios';
+
 describe('HomeScreen', () => {
   test(`
         Given a HomeScreen
@@ -12,8 +13,8 @@ describe('HomeScreen', () => {
     jest.spyOn(axios, 'get').mockResolvedValue(fakenewsstub);
 
     // act
-    await waitFor(async () => {
-      await render(<HomeScreen />);
+    await waitFor(() => {
+      render(<HomeScreen />);
     });
 
     // assert
