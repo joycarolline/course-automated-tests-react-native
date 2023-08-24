@@ -1,3 +1,4 @@
+import {useEffect, useRef} from 'react';
 import {
   SafeAreaView,
   Image,
@@ -20,7 +21,7 @@ type ParamList = {
 
 const ProfileScreen = () => {
   const {params} = useRoute<RouteProp<ParamList, 'Profile'>>();
-  const {register, control, handleSubmit, setValue} = useForm({
+  const {register, control, handleSubmit} = useForm({
     defaultValues: async () => {
       const fields = jwt_decode(params.token) as any;
 
@@ -45,17 +46,30 @@ const ProfileScreen = () => {
     }
   };
 
+  //useEffect(() => {})
+
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.image} source={require('../assets/logo.png')} />
 
-      <Input control={control} label="Nome" {...register('name')} />
-      <Input control={control} label="E-mail" {...register('email')} />
-      <Input control={control} label="Senha" {...register('password')} />
+      <Input control={control} label="Nome" {...register('name')} name="name" />
+      <Input
+        control={control}
+        label="E-mail"
+        {...register('email')}
+        name="email"
+      />
+      <Input
+        control={control}
+        label="Senha"
+        {...register('password')}
+        name="password"
+      />
       <Input
         control={control}
         label="Data de Nascimento"
         {...register('birthday')}
+        name="birthday"
       />
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
