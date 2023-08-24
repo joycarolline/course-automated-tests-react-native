@@ -1,10 +1,12 @@
 const jwt = require("jsonwebtoken");
 
+const SignToken = "okmcdasoimfsodosaodsmfosd";
+
 const verifyToken = (req, res, next) => {
   const token = req.query?.token ?? "";
 
   try {
-    jwt.verify(token, "okmcdasoimfsodosaodsmfosd");
+    jwt.verify(token, SignToken);
     next();
   } catch (err) {
     return res.status(401).send({
@@ -13,4 +15,4 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-module.exports = verifyToken;
+module.exports = { verifyToken, SignToken };

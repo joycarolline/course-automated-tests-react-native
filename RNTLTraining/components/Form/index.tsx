@@ -12,6 +12,9 @@ const Form = ({children, buttonText, onSubmit}: PropsWithChildren<IProps>) => {
       {children}
 
       <TouchableOpacity
+        // onPressOut={() => {
+        //   console.log('Boa noite turma!');
+        // }}
         onPress={onSubmit}
         style={styles.button}
         accessibilityLabel="Botão de entrar">

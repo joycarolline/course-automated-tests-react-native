@@ -2,61 +2,14 @@ import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  Image,
-  View,
   FlatList,
+  TouchableOpacity,
   Text,
 } from 'react-native';
 import {fakenews} from '../api/fakenews';
-import {RouteProp, useRoute} from '@react-navigation/native';
-
-type FakeNews = {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  published_at: string;
-  author: string;
-};
-type ItemProps = {
-  fields: FakeNews;
-};
-
-const Item = ({fields}: ItemProps) => {
-  const publishedAt = new Date(fields.published_at);
-  return (
-    <View
-      style={styles.item}
-      key={fields.id}
-      accessibilityLabel={`Item da fakenews ${fields.title}`}>
-      <Image
-        accessibilityLabel={`Imagem da fakenews ${fields.title}`}
-        source={{uri: fields.image}}
-        style={{width: 50, height: 50}}
-      />
-      <View style={styles.fakenews}>
-        <Text accessibilityLabel={`${fields.title}`} style={styles.title}>
-          {fields.title}
-        </Text>
-        <Text
-          accessibilityLabel={`Descrição da fakenews ${fields.title}`}
-          style={styles.description}>
-          {fields.description}
-        </Text>
-        <Text
-          accessibilityLabel={`Data da Publicação da fakenews ${fields.title}`}
-          style={styles.published_at}>
-          Publicado: {publishedAt.toLocaleDateString('pt-br')}
-        </Text>
-        <Text
-          accessibilityLabel={`Autor da fakenews ${fields.title}`}
-          style={styles.author}>
-          Autor: {fields.author}
-        </Text>
-      </View>
-    </View>
-  );
-};
+import {RouteProp, useRoute, useNavigation} from '@react-navigation/native';
+import {FakeNews, Item} from '../components/Item';
+import {storeData, getData, updateData} from '../hooks/db';
 
 type ParamList = {
   Home: {
@@ -67,11 +20,31 @@ type ParamList = {
 const HomeScreen = () => {
   const [listFakeNews, setListFakeNews] = useState<FakeNews[]>([]);
   const {params} = useRoute<RouteProp<ParamList, 'Home'>>();
+  const navigation = useNavigation<{
+    navigate: (screen: string, params?: {token: string}) => void;
+  }>();
+
+  const likeFunction = async (id: string, value: number) => {
+    await updateData(id, value);
+  };
+
+  const profileScreen = () => {
+    return navigation.navigate('Profile', {token: params.token});
+  };
 
   useEffect(() => {
     const getFakeNews = async () => {
-      const res = await fakenews(params.token);
-      setListFakeNews(res);
+      const cacheData = await getData('fakenews_list');
+
+      if (!cacheData) {
+        const res = await fakenews(params.token);
+
+        await storeData('fakenews_list', res);
+        setListFakeNews(res);
+        return;
+      }
+
+      setListFakeNews(cacheData);
     };
 
     getFakeNews();
@@ -79,9 +52,14 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity style={styles.profileButton} onPress={profileScreen}>
+        <Text>Meu Perfil</Text>
+      </TouchableOpacity>
       <FlatList
         data={listFakeNews}
-        renderItem={({item}) => <Item fields={item} />}
+        renderItem={({item}) => (
+          <Item fields={item} onPressLike={likeFunction} />
+        )}
         keyExtractor={item => item.id}
       />
     </SafeAreaView>
@@ -92,6 +70,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+  },
+  profileButton: {
+    width: '90%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    borderWidth: 1,
+    borderColor: 'red',
+    borderStyle: 'solid',
+    marginLeft: 20,
   },
   fakenews: {
     marginLeft: 10,

@@ -6,14 +6,25 @@ navigation.useRoute = jest.fn().mockReturnValue({
   },
 });
 
-const {useRoute} = navigation;
+navigation.useNavigation = jest.fn().mockReturnValue({
+  navigate: () => {},
+});
 
-export {useRoute};
+const {useRoute, useNavigation} = navigation;
+
+export {useRoute, useNavigation};
 
 export default navigation;
 
-// export const useRoute = jest.fn().mockReturnValue({
+// --- Alternativa 2
+// const useRoute = jest.fn().mockReturnValue({
 //   params: {
 //     token: 'mocked-token',
 //   },
 // });
+
+// const useNavigation = jest.fn().mockReturnValue({
+//   navigate: () => {},
+// });
+
+// export {useRoute, useNavigation};

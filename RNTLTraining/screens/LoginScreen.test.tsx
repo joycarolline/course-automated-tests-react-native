@@ -1,4 +1,9 @@
-import {render, screen, fireEvent} from '@testing-library/react-native';
+import {
+  render,
+  screen,
+  fireEvent,
+  userEvent,
+} from '@testing-library/react-native';
 import {Alert, Platform} from 'react-native';
 import axios from 'axios';
 
@@ -23,7 +28,9 @@ describe('Login Screen', () => {
         AND input password "admin"
     Then should show success message "Sucesso" "Voce está logado"
 `, async () => {
+    jest.useFakeTimers();
     jest.spyOn(axios, 'post').mockResolvedValue(successStub);
+    jest.spyOn(console, 'log');
 
     // arrange
     const email = 'Admin';
@@ -39,10 +46,13 @@ describe('Login Screen', () => {
     fireEvent.changeText(passwordInput, password);
 
     // act
-    await fireEvent.press(buttonSubmit);
+    //await fireEvent.press(buttonSubmit);
+    const user = userEvent.setup();
+    await user.press(buttonSubmit);
 
     // assert
     expect(Alert.alert).toHaveBeenCalledWith('Sucesso', 'Voce está logado.');
+    // expect(console.log).toHaveBeenCalledWith('Boa noite turma!');
   });
 
   test(`

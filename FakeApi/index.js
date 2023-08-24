@@ -1,8 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const router = express.Router();
 const jwt = require("jsonwebtoken");
-const verifyToken = require("./tokenverify");
+const { verifyToken, SignToken } = require("./tokenverify");
 
 const generateFakeNewsList = require("./fakenews");
 
@@ -19,9 +18,11 @@ app.post("/api/login", (req, res) => {
 
     const token = jwt.sign(
       {
-        email: "admin",
+        email: "Admin",
+        name: "Turma Testes Automatizados RN",
+        birthday: "1990-01-01",
       },
-      "okmcdasoimfsodosaodsmfosd",
+      SignToken,
       { expiresIn: 60 * 60 },
     );
 
@@ -56,6 +57,28 @@ app.get("/api/fakenews", verifyToken, (req, res) => {
   const fakeNewsList = generateFakeNewsList(quantity);
 
   return res.status(200).json(fakeNewsList);
+});
+
+app.put("/api/user", verifyToken, (req, res) => {
+  const { email, birthday, name } = req.body;
+
+  console.log("Perfil Atualizado com Sucesso");
+
+  const token = jwt.sign(
+    {
+      email: email,
+      name: name,
+      birthday: birthday,
+    },
+    SignToken,
+    { expiresIn: 60 * 60 },
+  );
+
+  res.status(200).json({
+    token: token,
+  });
+  res.end();
+  return;
 });
 
 app.listen(port, () => {
