@@ -1,14 +1,13 @@
 import {
   render,
   screen,
-  fireEvent,
   userEvent,
   waitFor,
+  act,
 } from '@testing-library/react-native';
 import ProfileScreen from './ProfileScreen';
 import React from 'react';
-import {Alert} from 'react-native';
-import axios from 'axios';
+//import axios from 'axios';
 
 jest.mock('@react-navigation/native', () => ({
   useRoute: () => ({
@@ -19,13 +18,20 @@ jest.mock('@react-navigation/native', () => ({
   }),
 }));
 
-//jest.spyOn(React, 'useRef').mockReturnValue({current: null});
+jest.useFakeTimers({
+  advanceTimers: true,
+});
+
+jest.mock('react-native', () => {
+  const RN = jest.requireActual('react-native');
+
+  RN.Alert.alert = jest.fn();
+
+  return RN;
+});
 
 describe('ProfileScreen', () => {
-  beforeAll(() => {
-    jest.spyOn(Alert, 'alert');
-    jest.useFakeTimers();
-  });
+  beforeAll(() => {});
 
   test(`
   Given a profile screen
@@ -36,7 +42,11 @@ describe('ProfileScreen', () => {
     // arrange
 
     // act
-    await waitFor(() => render(<ProfileScreen />));
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    await waitFor(async () => await render(<ProfileScreen />));
 
     // assert
     expect(screen.getByDisplayValue('turma')).toBeVisible();
@@ -56,11 +66,17 @@ describe('ProfileScreen', () => {
     await waitFor(() => render(<ProfileScreen />));
 
     // act
-    const user = userEvent.setup();
-    const nameInput = screen.getByPlaceholderText('Nome');
-    user.clear(nameInput);
-    await user.type(nameInput, 'teste');
-    await user.press(screen.getByLabelText('Salvar'));
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    await waitFor(async () => {
+      const user = userEvent.setup();
+      const nameInput = screen.getByPlaceholderText('Nome');
+      user.clear(nameInput);
+      await user.type(nameInput, 'teste');
+      await user.press(screen.getByLabelText('Salvar'));
+    });
 
     screen.getByPlaceholderText('Nome');
 
@@ -81,9 +97,13 @@ describe('ProfileScreen', () => {
     //   throw new Error('Erro Aleatorio');
     // });
 
-    await waitFor(() => render(<ProfileScreen />));
+    await waitFor(async () => await render(<ProfileScreen />));
 
     // act
+    act(() => {
+      jest.runAllTimers();
+    });
+
     const user = userEvent.setup();
     const nameInput = screen.getByPlaceholderText('Nome');
     user.clear(nameInput);

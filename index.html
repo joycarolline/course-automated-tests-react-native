@@ -1,1 +1,41 @@
-<h1>VOLTAMOS 20:30</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso RNTL + JEST + DETOX</title>
+</head>
+<body style="display: flex; flex-direction: column; align-items: center;">
+  <h1 style="text-decoration: underline;">Voltaremos <span id="returnTime"></span></h1>
+  <h3 id="time"></h3>
+</body>
+</html>
+
+<script>
+  (function () {
+    const date = new Date();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    let returnTime =  new Date(date.getTime() + 15*60000);
+    let returnMinute = (returnTime.getMinutes() < 10 ? '0' : '') + returnTime.getMinutes();
+
+    document.getElementById('returnTime').innerHTML = ` ${returnTime.getHours()}:${returnMinute}`;
+    
+    setInterval(() => {
+      second = second + 1;
+      
+      if (second == 60) {
+        minute = minute + 1;
+        second = 0;
+      }
+
+      if (minute == 60) {
+        hour = hour + 1;
+        minute = 0;
+      }
+
+      document.getElementById('time').innerHTML = `${hour}:${minute}:${second}`;
+    }, 1000);
+  })();
+</script>

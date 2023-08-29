@@ -1,4 +1,4 @@
-import {useEffect, useRef} from 'react';
+import {useEffect} from 'react';
 import {
   SafeAreaView,
   Image,
@@ -39,38 +39,27 @@ const ProfileScreen = () => {
 
     try {
       await profile(token, payload);
-
       Alert.alert('Sucesso!', 'Perfil atualizado');
     } catch (error) {
       Alert.alert('Erro', 'Erro ao atualizar perfil');
     }
   };
 
-  //useEffect(() => {})
+  useEffect(() => {
+    register('email');
+    register('password');
+    register('birthday');
+    register('name');
+  });
 
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.image} source={require('../assets/logo.png')} />
 
-      <Input control={control} label="Nome" {...register('name')} name="name" />
-      <Input
-        control={control}
-        label="E-mail"
-        {...register('email')}
-        name="email"
-      />
-      <Input
-        control={control}
-        label="Senha"
-        {...register('password')}
-        name="password"
-      />
-      <Input
-        control={control}
-        label="Data de Nascimento"
-        {...register('birthday')}
-        name="birthday"
-      />
+      <Input control={control} label="Nome" name="name" />
+      <Input control={control} label="E-mail" name="email" />
+      <Input control={control} label="Senha" name="password" />
+      <Input control={control} label="Data de Nascimento" name="birthday" />
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
         <Text style={styles.buttonText} accessibilityLabel="Salvar">

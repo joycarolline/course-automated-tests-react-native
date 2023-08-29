@@ -44,12 +44,14 @@ const LoginScreen = () => {
             label="E-mail"
             onChangeText={text => setEmail(text)}
             value={email}
+            name={'email'}
           />
           <Input
             label="Senha"
             onChangeText={text => setPassword(text)}
             value={password}
             secureTextEntry
+            name={'senha'}
           />
         </Form>
         <Text>Desenvolvido pela Turma</Text>

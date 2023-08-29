@@ -3,6 +3,7 @@ import {
   screen,
   fireEvent,
   userEvent,
+  waitFor,
 } from '@testing-library/react-native';
 import {Alert, Platform} from 'react-native';
 import axios from 'axios';
@@ -10,6 +11,9 @@ import axios from 'axios';
 import successStub from '../api/success-stub.json';
 import errorStub from '../api/error-stub.json';
 import LoginScreen from './LoginScreen';
+
+const renderLoginScreen = async () =>
+  await waitFor(() => render(<LoginScreen />));
 
 describe('Login Screen', () => {
   beforeAll(() => {
@@ -36,7 +40,7 @@ describe('Login Screen', () => {
     const email = 'Admin';
     const password = 'admin';
 
-    render(<LoginScreen />);
+    await renderLoginScreen();
 
     const emailInput = screen.getByPlaceholderText('E-mail');
     const passwordInput = screen.getByPlaceholderText('Senha');
@@ -73,7 +77,7 @@ describe('Login Screen', () => {
     const email = 'wrong';
     const password = 'admin';
 
-    render(<LoginScreen />);
+    await renderLoginScreen();
 
     const emailInput = screen.getByPlaceholderText('E-mail');
     const passwordInput = screen.getByPlaceholderText('Senha');
@@ -106,7 +110,7 @@ describe('Login Screen', () => {
     const email = 'wrong';
     const password = 'admin';
 
-    render(<LoginScreen />);
+    await renderLoginScreen();
 
     const emailInput = screen.getByPlaceholderText('E-mail');
     const passwordInput = screen.getByPlaceholderText('Senha');

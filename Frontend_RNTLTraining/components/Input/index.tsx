@@ -4,7 +4,7 @@ import {Controller} from 'react-hook-form';
 
 interface IProps extends TextInputProps {
   label: string;
-  name?: string;
+  name: string | any;
   control?: any;
 }
 

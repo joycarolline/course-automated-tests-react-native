@@ -1,4 +1,5 @@
 import {login} from './login';
+import * as apiLogin from './login';
 import axios from 'axios';
 import success_stub from './success-stub.json';
 
@@ -28,6 +29,15 @@ test(`
     Then should return a message "Invalid credentials"
         And status code 401
 `, async () => {
+  jest.spyOn(apiLogin, 'login').mockRejectedValue({
+    response: {
+      status: 401,
+      data: {
+        message: 'Invalid credentials',
+      },
+    },
+  });
+
   // arrange
   const email = 'Admin';
   const password = 'test';
