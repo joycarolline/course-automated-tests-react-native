@@ -75,7 +75,7 @@ export const Item = ({fields, onPressLike}: ItemProps) => {
             accessibilityLabel="Botão Adicionar Like"
             onPress={async () => await handleCount(fields.id)}>
             <Image
-              source={require('../../assets/thumbsup.png')}
+              source={require('../../assets/Thumb_up.png')}
               style={styles.likeButton}
             />
           </TouchableOpacity>

@@ -54,7 +54,7 @@ const ProfileScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image style={styles.image} source={require('../assets/logo.png')} />
+      <Image style={styles.image} source={require('../assets/Logo.png')} />
 
       <Input control={control} label="Nome" name="name" />
       <Input control={control} label="E-mail" name="email" />

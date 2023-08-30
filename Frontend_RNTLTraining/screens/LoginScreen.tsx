@@ -36,7 +36,7 @@ const LoginScreen = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{flex: 1}}>
         <Image
-          source={require('../assets/logo.png')}
+          source={require('../assets/Logo.png')}
           style={{width: 300, height: 250}}
         />
         <Form buttonText="Entrar" onSubmit={handleLogin}>
