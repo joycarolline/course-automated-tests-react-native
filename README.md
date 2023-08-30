@@ -2,6 +2,10 @@
   <img width="200" height="200" src="https://avatars.githubusercontent.com/u/141099506?s=200&v=4">
 </p>
 
+#### Colaboradores:
+- [FIGMA](http://figma.com/file/n2bVyegHkwUjiIIaz9rHyj/Untitled?type=design&node-id=4-10&mode=design&t=YmpaAUK7oZ4z16zT-0) by **Joyce Caroline Santos**
+- Código + Testes by **Isaias Melo**
+
 # Curso de Testes Automatizados com Jest + React Native Testing Library (RNTL)
 
 ### 💡 Iniciando um Projeto do Zero
