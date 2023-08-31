@@ -7,16 +7,15 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Login: undefined;
   Home: {token: string};
   Profile: {token: string};
   Welcome: undefined;
+  Register: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
-console.log(Stack);
 
 const App = () => {
   return (

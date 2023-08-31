@@ -3,13 +3,16 @@ import {
   SafeAreaView,
   StyleSheet,
   FlatList,
-  TouchableOpacity,
   Text,
+  Image,
+  View,
 } from 'react-native';
 import {fakenews} from '../api/fakenews';
 import {RouteProp, useRoute, useNavigation} from '@react-navigation/native';
 import {FakeNews, Item} from '../components/Item';
 import {storeData, getData, updateData} from '../hooks/db';
+import Input from '../components/Input';
+import BottomTab from '../components/BottomTab';
 
 type ParamList = {
   Home: {
@@ -20,16 +23,10 @@ type ParamList = {
 const HomeScreen = () => {
   const [listFakeNews, setListFakeNews] = useState<FakeNews[]>([]);
   const {params} = useRoute<RouteProp<ParamList, 'Home'>>();
-  const navigation = useNavigation<{
-    navigate: (screen: string, params?: {token: string}) => void;
-  }>();
+  const navigation = useNavigation();
 
   const likeFunction = async (id: string, value: number) => {
     await updateData(id, value);
-  };
-
-  const profileScreen = () => {
-    return navigation.navigate('Profile', {token: params.token});
   };
 
   useEffect(() => {
@@ -52,9 +49,24 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity style={styles.profileButton} onPress={profileScreen}>
-        <Text>Meu Perfil</Text>
-      </TouchableOpacity>
+      <View style={styles.top}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo} />
+        <Image
+          source={require('../assets/Three_dots.png')}
+          style={styles.threeDots}
+        />
+      </View>
+
+      <View style={styles.containerSearch}>
+        <Input
+          label="Pesquisar"
+          name="search"
+          iconRight={<Image source={require('../assets/Search.png')} />}
+        />
+      </View>
+
+      <Text style={styles.lastNews}>Últimas notícias</Text>
+
       <FlatList
         data={listFakeNews}
         renderItem={({item}) => (
@@ -62,6 +74,7 @@ const HomeScreen = () => {
         )}
         keyExtractor={item => item.id}
       />
+      <BottomTab token={params.token} />
     </SafeAreaView>
   );
 };
@@ -70,6 +83,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+  },
+  top: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    marginLeft: 10,
+  },
+  containerSearch: {
+    paddingHorizontal: 20,
+  },
+  threeDots: {
+    marginRight: 10,
+  },
+  lastNews: {
+    fontSize: 20,
+    marginLeft: 20,
+    marginTop: 20,
+    marginBottom: 10,
   },
   profileButton: {
     width: '90%',

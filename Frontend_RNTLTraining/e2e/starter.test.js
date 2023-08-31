@@ -1,4 +1,8 @@
 const loginFlow = async () => {
+  const enterBtn = await element(by.label('Entrar')).atIndex(0);
+
+  await enterBtn.tap();
+
   const email = await element(by.label('E-mail')).atIndex(0);
   const senha = await element(by.label('Senha')).atIndex(0);
   const loginBtn = await element(by.label('Entrar')).atIndex(0);

@@ -18,9 +18,10 @@ export const Button = ({
   label,
   variant = 'contained',
   mt = 0,
+  ...rest
 }: IButtonProps) => {
   return (
-    <TouchableOpacity style={styles.container(variant, mt)}>
+    <TouchableOpacity style={styles.container(variant, mt)} {...rest}>
       <Text style={styles.text(variant)}>{label}</Text>
     </TouchableOpacity>
   );
@@ -28,10 +29,10 @@ export const Button = ({
 
 const styles = StyleSheet.create({
   container: (variant: TVariant, mt: number) => ({
-    backgroundColor: variant === 'outlined' ? 'transparent' : colors.primary,
+    backgroundColor: variant === 'outlined' ? '#fff' : colors.primary,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    width: 160,
+    minWidth: 180,
     borderRadius: 30,
     borderWidth: variant === 'outlined' ? 1 : 0,
     borderColor: colors.primary,

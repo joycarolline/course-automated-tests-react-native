@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {
   SafeAreaView,
+  View,
   Image,
   StyleSheet,
   TouchableOpacity,
@@ -12,6 +13,9 @@ import Input from '../components/Input';
 import {profile} from '../api/profile';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import jwt_decode from 'jwt-decode';
+import colors from '../theme/colors';
+import BottomTab from '../components/BottomTab';
+import {Button} from '../components/Button';
 
 type ParamList = {
   Profile: {
@@ -53,19 +57,40 @@ const ProfileScreen = () => {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <Image style={styles.image} source={require('../assets/Logo.png')} />
+      <View style={styles.container}>
+        <Text style={styles.title}>Editar perfil</Text>
+        <View style={styles.formInput}>
+          <Text style={styles.label}>Nome</Text>
+          <Input control={control} name="name" />
+        </View>
 
-      <Input control={control} label="Nome" name="name" />
-      <Input control={control} label="E-mail" name="email" />
-      <Input control={control} label="Senha" name="password" />
-      <Input control={control} label="Data de Nascimento" name="birthday" />
+        <View style={styles.formInput}>
+          <Text style={styles.label}>E-mail</Text>
+          <Input control={control} name="email" />
+        </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
-        <Text style={styles.buttonText} accessibilityLabel="Salvar">
-          Salvar
-        </Text>
-      </TouchableOpacity>
+        <View style={styles.formInput}>
+          <Text style={styles.label}>Senha</Text>
+          <Text style={styles.labelDescription}>
+            A senha deve conter entre 4 e 8 caracteres e conter números e
+            letras.
+          </Text>
+          <Input control={control} name="password" />
+        </View>
+
+        <Button
+          label="Salvar"
+          variant="outlined"
+          onPress={handleSubmit(onSubmit)}
+          accessibilityLabel="Salvar"
+        />
+        <TouchableOpacity>
+          <Text style={styles.buttonText}>Deletar conta</Text>
+        </TouchableOpacity>
+      </View>
+      <BottomTab token={params.token} />
     </SafeAreaView>
   );
 };
@@ -74,16 +99,37 @@ export default ProfileScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 80,
-    padding: 30,
-    marginLeft: 20,
-    marginRight: 20,
+    width: '100%',
+    padding: 20,
+    minHeight: '85%',
+  },
+  formInput: {
+    alignItems: 'flex-start',
+    width: '100%',
+    paddingBottom: 30,
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+    color: colors.gray[1000],
+    marginLeft: 3,
+  },
+  labelDescription: {
+    fontSize: 12,
+    marginBottom: 5,
+    color: colors.gray[600],
+    marginLeft: 3,
+    width: '90%',
   },
   image: {
-    height: 200,
-    width: 200,
+    height: 120,
+    width: 120,
+    marginLeft: 10,
+  },
+  title: {
+    fontSize: 20,
+    color: colors.gray[1000],
+    marginBottom: 30,
   },
   button: {
     backgroundColor: '#f45',
@@ -91,11 +137,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     borderRadius: 10,
-    marginTop: 20,
+    marginBottom: 30,
   },
   buttonText: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#fff',
+    marginTop: 15,
+    color: colors.gray[600],
   },
 });

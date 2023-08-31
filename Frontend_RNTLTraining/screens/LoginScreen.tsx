@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {login} from '../api/login';
 import {
+  TouchableOpacity,
   SafeAreaView,
   StyleSheet,
   Image,
@@ -8,10 +9,13 @@ import {
   Alert,
   Platform,
   Text,
+  View,
 } from 'react-native';
 import Input from '../components/Input';
 import Form from '../components/Form';
 import {useNavigation} from '@react-navigation/native';
+
+import colors from '../theme/colors';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -31,13 +35,13 @@ const LoginScreen = () => {
     return Alert.alert('Erro', res.data?.message ?? 'Erro inesperado');
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}>
+        style={styles.container}>
         <Image
           source={require('../assets/Logo.png')}
-          style={{width: 300, height: 250}}
+          style={{width: 205, height: 175, marginBottom: 60}}
         />
         <Form buttonText="Entrar" onSubmit={handleLogin}>
           <Input
@@ -54,7 +58,15 @@ const LoginScreen = () => {
             name={'senha'}
           />
         </Form>
-        <Text>Desenvolvido pela Turma</Text>
+
+        <View style={styles.containerRegister}>
+          <Text>Novo aqui?</Text>
+          <TouchableOpacity
+            onPress={() => {}}
+            accessibilityLabel="Cadastre-se!">
+            <Text style={styles.textRegister}> Cadastre-se!</Text>
+          </TouchableOpacity>
+        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -66,6 +78,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
+  },
+  containerRegister: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+
+    position: 'absolute',
+    bottom: 30,
+  },
+  textRegister: {
+    color: colors.secondary,
   },
 });
 
