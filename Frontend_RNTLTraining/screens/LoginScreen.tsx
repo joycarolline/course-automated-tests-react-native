@@ -62,7 +62,7 @@ const LoginScreen = () => {
         <View style={styles.containerRegister}>
           <Text>Novo aqui?</Text>
           <TouchableOpacity
-            onPress={() => {}}
+            onPress={() => navigation.navigate('Register')}
             accessibilityLabel="Cadastre-se!">
             <Text style={styles.textRegister}> Cadastre-se!</Text>
           </TouchableOpacity>

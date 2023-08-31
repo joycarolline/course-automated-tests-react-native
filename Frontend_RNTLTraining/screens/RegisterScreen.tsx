@@ -10,12 +10,10 @@ import {
 } from 'react-native';
 import {useForm} from 'react-hook-form';
 import Input from '../components/Input';
-import {profile} from '../api/profile';
-import {RouteProp, useRoute} from '@react-navigation/native';
-import jwt_decode from 'jwt-decode';
+import {useRoute} from '@react-navigation/native';
 import colors from '../theme/colors';
-import BottomTab from '../components/BottomTab';
 import {Button} from '../components/Button';
+import {useNavigation} from '@react-navigation/native';
 
 type ParamList = {
   Profile: {
@@ -23,26 +21,14 @@ type ParamList = {
   };
 };
 
-const ProfileScreen = () => {
-  const {params} = useRoute<RouteProp<ParamList, 'Profile'>>();
-  const {register, control, handleSubmit} = useForm({
-    defaultValues: async () => {
-      const fields = jwt_decode(params.token) as any;
-
-      return {
-        name: fields?.name,
-        email: fields?.email,
-        password: fields?.password,
-        birthday: fields?.birthday,
-      };
-    },
-  });
+const RegisterScreen = () => {
+  const {params} = useRoute();
+  const navigation = useNavigation();
+  const {register, control, handleSubmit} = useForm();
 
   const onSubmit = async (payload: any) => {
-    const {token} = params;
-
     try {
-      await profile(token, payload);
+      // await profile(token, payload);
       Alert.alert('Sucesso!', 'Perfil atualizado');
     } catch (error) {
       Alert.alert('Erro', 'Erro ao atualizar perfil');
@@ -59,7 +45,10 @@ const ProfileScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.image} source={require('../assets/Logo.png')} />
-      <Text style={styles.title}>Editar perfil</Text>
+      <Text style={styles.title}>Bem-vindo,</Text>
+      <Text style={styles.description}>
+        Preencha as informaçōes abaixo para realizar seu cadastro
+      </Text>
       <View style={styles.formContainer}>
         <View style={styles.formInput}>
           <Text style={styles.label}>Nome</Text>
@@ -81,21 +70,23 @@ const ProfileScreen = () => {
         </View>
 
         <Button
-          label="Salvar"
+          label="Cadastrar"
           variant="outlined"
           onPress={handleSubmit(onSubmit)}
-          accessibilityLabel="Salvar"
+          accessibilityLabel="Cadastrar"
         />
-        <TouchableOpacity>
-          <Text style={styles.buttonText}>Deletar conta</Text>
+        <TouchableOpacity
+          style={styles.buttonLogin}
+          onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.buttonText}>Já possui uma conta?</Text>
+          <Text style={styles.clickHereText}>Clique aqui</Text>
         </TouchableOpacity>
       </View>
-      <BottomTab token={params.token} />
     </SafeAreaView>
   );
 };
 
-export default ProfileScreen;
+export default RegisterScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -126,13 +117,19 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   image: {
-    height: 120,
-    width: 120,
-    marginLeft: 10,
+    height: 140,
+    width: 140,
+    alignSelf: 'center',
   },
   title: {
     fontSize: 20,
     color: colors.gray[1000],
+    marginBottom: 6,
+    marginLeft: 20,
+  },
+  description: {
+    fontSize: 14,
+    color: colors.gray[600],
     marginBottom: 15,
     marginLeft: 20,
   },
@@ -144,9 +141,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 30,
   },
+  buttonLogin: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   buttonText: {
     fontSize: 14,
     marginTop: 15,
     color: colors.gray[600],
+  },
+  clickHereText: {
+    fontSize: 14,
+    marginTop: 15,
+    color: colors.secondary,
+    marginLeft: 6,
   },
 });

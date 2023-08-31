@@ -6,13 +6,15 @@ import {
   Text,
   Image,
   View,
+  TouchableOpacity,
 } from 'react-native';
 import {fakenews} from '../api/fakenews';
-import {RouteProp, useRoute, useNavigation} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import {FakeNews, Item} from '../components/Item';
 import {storeData, getData, updateData} from '../hooks/db';
 import Input from '../components/Input';
 import BottomTab from '../components/BottomTab';
+import About from '../components/About';
 
 type ParamList = {
   Home: {
@@ -22,11 +24,20 @@ type ParamList = {
 
 const HomeScreen = () => {
   const [listFakeNews, setListFakeNews] = useState<FakeNews[]>([]);
+  const [filteredListFakeNews, setFilteredListFakeNews] =
+    useState<FakeNews[]>(listFakeNews);
   const {params} = useRoute<RouteProp<ParamList, 'Home'>>();
-  const navigation = useNavigation();
+
+  const [search, setSearch] = useState('');
+  const [visibleModal, setVisibleModal] = useState(false);
 
   const likeFunction = async (id: string, value: number) => {
     await updateData(id, value);
+  };
+
+  const openAbout = () => {
+    setVisibleModal(true);
+    return;
   };
 
   useEffect(() => {
@@ -47,14 +58,32 @@ const HomeScreen = () => {
     getFakeNews();
   }, []);
 
+  useEffect(() => {
+    const filter = () => {
+      if (search === '' || !search) {
+        setFilteredListFakeNews(listFakeNews);
+        return;
+      }
+
+      const filteredValue = listFakeNews.filter(item =>
+        item.title.toLowerCase().includes(search.toLowerCase()),
+      );
+      setFilteredListFakeNews(filteredValue);
+    };
+
+    filter();
+  }, [search]);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.top}>
         <Image source={require('../assets/Logo.png')} style={styles.logo} />
-        <Image
-          source={require('../assets/Three_dots.png')}
-          style={styles.threeDots}
-        />
+        <TouchableOpacity onPress={openAbout}>
+          <Image
+            source={require('../assets/Three_dots.png')}
+            style={styles.threeDots}
+          />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.containerSearch}>
@@ -62,19 +91,32 @@ const HomeScreen = () => {
           label="Pesquisar"
           name="search"
           iconRight={<Image source={require('../assets/Search.png')} />}
+          onChangeText={e => {
+            setSearch(e);
+          }}
+          value={search}
         />
       </View>
 
       <Text style={styles.lastNews}>Últimas notícias</Text>
 
       <FlatList
-        data={listFakeNews}
+        data={filteredListFakeNews}
         renderItem={({item}) => (
           <Item fields={item} onPressLike={likeFunction} />
+        )}
+        ListEmptyComponent={() => (
+          <Text style={{padding: 20}}>Nenhuma notícia encontrada!</Text>
         )}
         keyExtractor={item => item.id}
       />
       <BottomTab token={params.token} />
+      <About
+        visible={visibleModal}
+        onClose={() => {
+          setVisibleModal(false);
+        }}
+      />
     </SafeAreaView>
   );
 };
