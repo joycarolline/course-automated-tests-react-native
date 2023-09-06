@@ -18,4 +18,4 @@ jobs:
         run: cd Frontend_RNTLTraining && npm install
 
       - name: Custom Shell - Running Unit Tests
-        run: npm run test
+        run: cd Frontend_RNTLTraining && npm run test
