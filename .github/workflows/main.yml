@@ -1,0 +1,21 @@
+name: 'My First Workflow'
+
+on: [push]
+
+jobs:
+  my-first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Action - Checkout
+        uses: actions/checkout@v4
+      
+      - name: Git Action - Setup Node Enviroment
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Custom Shell - Install Dependencies
+        run: cd Frontend_RNTLTraining && npm install
+
+      - name: Custom Shell - Running Unit Tests
+        run: npm run test

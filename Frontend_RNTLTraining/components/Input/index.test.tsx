@@ -32,8 +32,6 @@ test(`
   // act
   fireEvent.changeText(screen.getByPlaceholderText('E-mail'), email);
 
-  console.log(screen.getByPlaceholderText('E-mail').props.value);
-
   // assert
   expect(screen.getByDisplayValue('email@teste.com')).toBeVisible();
 });

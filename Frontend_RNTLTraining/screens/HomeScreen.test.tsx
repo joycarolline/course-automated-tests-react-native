@@ -81,8 +81,8 @@ describe('HomeScreen', () => {
     // arrange
     jest.spyOn(axios, 'get').mockResolvedValue(fakenewsstub);
 
-    await waitFor(() => {
-      render(<HomeScreen />);
+    await waitFor(async () => {
+      await render(<HomeScreen />);
     });
 
     // act

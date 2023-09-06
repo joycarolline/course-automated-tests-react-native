@@ -90,8 +90,8 @@ export const Item = ({fields, onPressLike}: ItemProps) => {
         </TouchableOpacity>
         <Text style={styles.likeCount}>{countLikes} Curtidas</Text>
         <TouchableOpacity
-          accessibilityLabel="Botão Adicionar Like"
-          onPress={async () => await handleCount(fields.id)}
+          accessibilityLabel="Botão Compartilhar"
+          onPress={async () => {}}
           style={styles.buttonHighlight}>
           <Image
             source={require('../../assets/Reply.png')}
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   },
   likeCount: {
     fontSize: 12,
-    marginRight: 40,
+    marginRight: 25,
     color: colors.gray[400],
     textAlign: 'center',
   },

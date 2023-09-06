@@ -49,6 +49,7 @@ const HomeScreen = () => {
 
         await storeData('fakenews_list', res);
         setListFakeNews(res);
+        setFilteredListFakeNews(res);
         return;
       }
 

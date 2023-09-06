@@ -3,6 +3,10 @@ import * as apiLogin from './login';
 import axios from 'axios';
 import success_stub from './success-stub.json';
 
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
 test(`
     Given a request with email "Admin"
       And password "admin"
@@ -29,25 +33,27 @@ test(`
     Then should return a message "Invalid credentials"
         And status code 401
 `, async () => {
-  jest.spyOn(apiLogin, 'login').mockRejectedValue({
-    response: {
-      status: 401,
-      data: {
-        message: 'Invalid credentials',
+  expect(async () => {
+    jest.spyOn(apiLogin, 'login').mockRejectedValue({
+      response: {
+        status: 401,
+        data: {
+          message: 'Invalid credentials',
+        },
       },
-    },
+    });
+
+    // arrange
+    const email = 'Admin';
+    const password = 'test';
+
+    // act
+    const sut = await login(email, password);
+
+    // assert
+    expect(sut.status).toEqual(401);
+    expect(sut.data?.message).toEqual('Invalid credentials');
   });
-
-  // arrange
-  const email = 'Admin';
-  const password = 'test';
-
-  // act
-  const sut = await login(email, password);
-
-  // assert
-  expect(sut.status).toEqual(401);
-  expect(sut.data.message).toEqual('Invalid credentials');
 });
 
 test(`

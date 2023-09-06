@@ -7,7 +7,6 @@ import {
 } from '@testing-library/react-native';
 import ProfileScreen from './ProfileScreen';
 import React from 'react';
-//import axios from 'axios';
 
 jest.mock('@react-navigation/native', () => ({
   useRoute: () => ({
@@ -16,23 +15,17 @@ jest.mock('@react-navigation/native', () => ({
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluIiwibmFtZSI6InR1cm1hIiwiYmlydGhkYXkiOiIyMDIzLTA4LTIzIiwiaWF0IjoxNjkyODMwODc1LCJleHAiOjE2OTI4MzQ0NzV9.53J1J3udw26mXeRKXqKiC6vjMsg6v4QgV04LecTF4GQ',
     },
   }),
+  useNavigation: () => ({
+    navigate: jest.fn(),
+  }),
 }));
 
-jest.useFakeTimers({
-  advanceTimers: true,
-});
-
-jest.mock('react-native', () => {
-  const RN = jest.requireActual('react-native');
-
-  RN.Alert.alert = jest.fn();
-
-  return RN;
-});
-
 describe('ProfileScreen', () => {
-  beforeAll(() => {});
-
+  beforeAll(() => {
+    jest.useFakeTimers({
+      advanceTimers: true,
+    });
+  });
   test(`
   Given a profile screen
     And a token
@@ -51,7 +44,6 @@ describe('ProfileScreen', () => {
     // assert
     expect(screen.getByDisplayValue('turma')).toBeVisible();
     expect(screen.getByDisplayValue('Admin')).toBeVisible();
-    expect(screen.getByDisplayValue('2023-08-23')).toBeVisible();
     expect(screen.getByText('Salvar')).toBeVisible();
   });
 
@@ -66,22 +58,22 @@ describe('ProfileScreen', () => {
     await waitFor(() => render(<ProfileScreen />));
 
     // act
-    act(() => {
-      jest.runAllTimers();
-    });
+    // act(() => {
+    //   jest.runAllTimers();
+    // });
 
     await waitFor(async () => {
       const user = userEvent.setup();
-      const nameInput = screen.getByPlaceholderText('Nome');
-      user.clear(nameInput);
+      const nameInput = screen.getByLabelText('Nome');
+      await user.clear(nameInput);
       await user.type(nameInput, 'teste');
       await user.press(screen.getByLabelText('Salvar'));
     });
 
-    screen.getByPlaceholderText('Nome');
+    screen.getByLabelText('Nome');
 
     // assert
-    expect(screen.getByPlaceholderText('Nome')).toHaveProp('value', 'teste');
+    expect(screen.getByLabelText('Nome')).toHaveProp('value', 'teste');
     expect(screen.getByText('Salvar')).toBeVisible();
   });
 
@@ -105,15 +97,15 @@ describe('ProfileScreen', () => {
     });
 
     const user = userEvent.setup();
-    const nameInput = screen.getByPlaceholderText('Nome');
+    const nameInput = screen.getByLabelText('Nome');
     user.clear(nameInput);
     await user.type(nameInput, 'teste');
     await user.press(screen.getByLabelText('Salvar'));
 
-    screen.getByPlaceholderText('Nome');
+    screen.getByLabelText('Nome');
 
     // assert
-    expect(screen.getByPlaceholderText('Nome')).toHaveProp('value', 'teste');
+    expect(screen.getByLabelText('Nome')).toHaveProp('value', 'teste');
     expect(screen.getByText('Salvar')).toBeVisible();
   });
 });

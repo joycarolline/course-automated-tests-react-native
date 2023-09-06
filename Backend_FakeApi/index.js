@@ -46,13 +46,6 @@ app.post("/api/login", (req, res) => {
 
 app.get("/api/fakenews", verifyToken, (req, res) => {
   const quantity = req.query?.quantity ?? 20;
-  const token = req.query?.token ?? "";
-
-  if (!token) {
-    return res.status(401).send({
-      message: "Invalid token",
-    });
-  }
 
   const fakeNewsList = generateFakeNewsList(quantity);
 

@@ -1,10 +1,11 @@
-import axios, {AxiosResponse} from 'axios';
+import axios from 'axios';
 
 type LoginResponse = {
   data?: {
     message?: string;
   };
   token?: string;
+  status?: number;
 };
 
 export const login = async (

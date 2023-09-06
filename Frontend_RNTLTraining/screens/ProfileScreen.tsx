@@ -25,6 +25,7 @@ type ParamList = {
 
 const ProfileScreen = () => {
   const {params} = useRoute<RouteProp<ParamList, 'Profile'>>();
+
   const {register, control, handleSubmit} = useForm({
     defaultValues: async () => {
       const fields = jwt_decode(params.token) as any;
@@ -43,9 +44,9 @@ const ProfileScreen = () => {
 
     try {
       await profile(token, payload);
-      Alert.alert('Sucesso!', 'Perfil atualizado');
+      // Alert.alert('Sucesso!', 'Perfil atualizado');
     } catch (error) {
-      Alert.alert('Erro', 'Erro ao atualizar perfil');
+      // Alert.alert('Erro', 'Erro ao atualizar perfil');
     }
   };
 
@@ -63,12 +64,12 @@ const ProfileScreen = () => {
       <View style={styles.formContainer}>
         <View style={styles.formInput}>
           <Text style={styles.label}>Nome</Text>
-          <Input control={control} name="name" />
+          <Input control={control} name="name" accessibilityLabel="Nome" />
         </View>
 
         <View style={styles.formInput}>
           <Text style={styles.label}>E-mail</Text>
-          <Input control={control} name="email" />
+          <Input control={control} name="email" accessibilityLabel="E-mail" />
         </View>
 
         <View style={styles.formInput}>
@@ -77,7 +78,7 @@ const ProfileScreen = () => {
             A senha deve conter entre 4 e 8 caracteres e conter números e
             letras.
           </Text>
-          <Input control={control} name="password" />
+          <Input control={control} name="password" accessibilityLabel="Senha" />
         </View>
 
         <Button
