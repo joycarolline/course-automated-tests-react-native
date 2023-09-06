@@ -2,6 +2,8 @@
   <img width="200" height="200" src="https://avatars.githubusercontent.com/u/141099506?s=200&v=4">
 </p>
 
+[![My First Workflow](https://github.com/beadev-net/course-automated-tests-react-native/actions/workflows/main.yml/badge.svg)](https://github.com/beadev-net/course-automated-tests-react-native/actions/workflows/main.yml)
+
 #### Colaboradores:
 - [FIGMA](http://figma.com/file/n2bVyegHkwUjiIIaz9rHyj/Untitled?type=design&node-id=4-10&mode=design&t=YmpaAUK7oZ4z16zT-0) by **Joyce Caroline Santos**
 - Código + Testes by **Isaias Melo**
