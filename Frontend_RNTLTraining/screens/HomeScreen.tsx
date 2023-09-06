@@ -24,8 +24,9 @@ type ParamList = {
 
 const HomeScreen = () => {
   const [listFakeNews, setListFakeNews] = useState<FakeNews[]>([]);
-  const [filteredListFakeNews, setFilteredListFakeNews] =
-    useState<FakeNews[]>(listFakeNews);
+  const [filteredListFakeNews, setFilteredListFakeNews] = useState<FakeNews[]>(
+    [],
+  );
   const {params} = useRoute<RouteProp<ParamList, 'Home'>>();
 
   const [search, setSearch] = useState('');
@@ -49,10 +50,9 @@ const HomeScreen = () => {
 
         await storeData('fakenews_list', res);
         setListFakeNews(res);
-        setFilteredListFakeNews(res);
         return;
       }
-
+      console.log(cacheData);
       setListFakeNews(cacheData);
     };
 
@@ -61,8 +61,8 @@ const HomeScreen = () => {
 
   useEffect(() => {
     const filter = () => {
-      if (search === '' || !search) {
-        setFilteredListFakeNews(listFakeNews);
+      if (search == '' || !search) {
+        setListFakeNews(listFakeNews);
         return;
       }
 
@@ -102,7 +102,11 @@ const HomeScreen = () => {
       <Text style={styles.lastNews}>Últimas notícias</Text>
 
       <FlatList
-        data={filteredListFakeNews}
+        data={
+          filteredListFakeNews?.length == 0
+            ? listFakeNews
+            : filteredListFakeNews
+        }
         renderItem={({item}) => (
           <Item fields={item} onPressLike={likeFunction} />
         )}

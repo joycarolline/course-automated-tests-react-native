@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios --simulator='iPhone 14 Pro",
+    "ios": "react-native run-ios --simulator='iPhone 14 Pro'",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build:ios": "react-native run-ios --mode=Debug"
+    "build:ios": "react-native run-ios --mode=Debug",
+    "test:detox:recorder": "detox recorder --configuration 'ios.debug' --record"
   },
   "dependencies": {
     "@hookform/devtools": "^4.3.1",

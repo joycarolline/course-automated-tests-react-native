@@ -18,13 +18,13 @@ describe('App RNTL', () => {
     await device.launchApp();
   });
 
-  // afterEach(async () => {
-  //   await device.reloadReactNative();
-  // });
+  afterEach(async () => {
+    await device.reloadReactNative();
+  });
 
-  // it('should have welcome screen', async () => {
-  //   loginFlow();
-  // });
+  it('should have welcome screen', async () => {
+    loginFlow();
+  });
 
   it('should have home screen', async () => {
     // Arrange, Act
