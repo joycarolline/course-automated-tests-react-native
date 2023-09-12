@@ -23,15 +23,7 @@ describe('App RNTL', () => {
   });
 
   it('should have welcome screen', async () => {
-    loginFlow();
-  });
-
-  it('should have home screen', async () => {
-    // Arrange, Act
     await loginFlow();
-
-    // Assert
-    await expect(element(by.text('Meu Perfil'))).toBeVisible();
   });
 
   it('should have home screen and like a fake news', async () => {

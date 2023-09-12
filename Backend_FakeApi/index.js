@@ -52,6 +52,14 @@ app.get("/api/fakenews", verifyToken, (req, res) => {
   return res.status(200).json(fakeNewsList);
 });
 
+app.get("/api/feature_toggle", verifyToken, (req, res) => {
+  const toggle = true;
+
+  return res.status(200).json({
+    toggle: toggle,
+  });
+});
+
 app.put("/api/user", verifyToken, (req, res) => {
   const { email, birthday, name } = req.body;
 

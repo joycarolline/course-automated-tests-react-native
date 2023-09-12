@@ -10,7 +10,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "build:ios": "react-native run-ios --mode=Debug",
-    "test:detox:recorder": "detox recorder --configuration 'ios.debug' --record"
+    "test:detox:recorder": "detox test --configuration 'ios.sim.debug' --take-screenshots all --record-videos all"
   },
   "dependencies": {
     "@hookform/devtools": "^4.3.1",

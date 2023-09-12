@@ -6,8 +6,7 @@ on:
       - "main"
   
   pull_request_review:
-    branches:
-      - "main"
+    types: [submitted]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,3 +28,74 @@ jobs:
 
       - name: Custom Shell - Running Unit Tests
         run: cd Frontend_RNTLTraining && npm run test
+
+      # - name: Setup Java
+      #   uses: actions/setup-java@v3
+      #   with:
+      #     cache: gradle
+      #     distribution: temurin
+      #     java-version: 11
+      
+      # - name: Download Android Emulator Image
+      #   run: |
+      #     echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install "system-images;android-29;google_apis;x86"
+      #     echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd --force --name emu --device "Nexus 5X" -k 'system-images;android-29;google_apis;x86'
+      #     $ANDROID_HOME/emulator/emulator -list-avds
+
+      # - name: Android Emulator
+      #   timeout-minutes: 10
+      #   continue-on-error: true
+      #   run: |
+      #     echo "Starting emulator"
+      #     nohup $ANDROID_HOME/emulator/emulator -avd emu -no-audio -no-snapshot -no-window &
+      #     $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+      #     $ANDROID_HOME/platform-tools/adb devices
+      #     echo "Emulator started"
+
+      # - name: Android Detox
+      #   run: yarn start & detox test -c android.emu.debug
+
+      # - name: Detox build
+      #   run: yarn detox build --configuration android.emu.release
+
+      # - name: Get device name
+      #   id: device
+      #   run: node -e "console.log('AVD_NAME=' + require('./.detoxrc').devices.emulator.device.avdName)" >> $GITHUB_OUTPUT
+      
+      # - name: Detox test
+      #   uses: reactivecircus/android-emulator-runner@v2
+      #   with:
+      #     api-level: 31
+      #     arch: x86_64
+      #     avd-name: ${{ steps.device.outputs.AVD_NAME }}
+      #     script: yarn detox test --configuration android.emu.release --headless --record-logs all
+
+  e2e-android:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: cd Frontend_RNTLTraining && npm install
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Detox build
+        run: cd Frontend_RNTLTraining && npx detox build --configuration android.emu.release
+
+      - name: Detox test
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: cd Frontend_RNTLTraining && npx detox test --configuration android.emu.release
