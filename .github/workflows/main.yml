@@ -71,7 +71,7 @@ jobs:
       #     script: yarn detox test --configuration android.emu.release --headless --record-logs all
 
   e2e-android:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -104,4 +104,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: detox-artifacts
-          path: artifacts
+          path: Frontend_RNTLTraining/artifacts
