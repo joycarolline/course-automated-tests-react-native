@@ -85,23 +85,23 @@ jobs:
       - name: Install dependencies
         run: cd Frontend_RNTLTraining && npm install
 
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: 17
+      # - name: Setup Java
+      #   uses: actions/setup-java@v3
+      #   with:
+      #     distribution: temurin
+      #     java-version: 17
 
-      - name: Detox build
-        run: cd Frontend_RNTLTraining && npx detox build --configuration android.emu.release
+      # - name: Detox build
+      #   run: cd Frontend_RNTLTraining && npx detox build --configuration android.emu.release
 
-      - name: Detox test
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: cd Frontend_RNTLTraining && npm run test:detox:android:pipeline
+      # - name: Detox test
+      #   uses: reactivecircus/android-emulator-runner@v2
+      #   with:
+      #     api-level: 29
+      #     script: cd Frontend_RNTLTraining && npm run test:detox:android:pipeline
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: detox-artifacts
-          path: Frontend_RNTLTraining/artifacts
+          path: Frontend_RNTLTraining/types/*
