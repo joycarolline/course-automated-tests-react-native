@@ -55,8 +55,11 @@ describe('Login Screen', () => {
     await user.press(buttonSubmit);
 
     // assert
-    expect(Alert.alert).toHaveBeenCalledWith('Sucesso', 'Voce está logado.');
-    // expect(console.log).toHaveBeenCalledWith('Boa noite turma!');
+    expect(Alert.alert).toHaveBeenCalledWith('Sucesso', 'Voce está logado.', [
+      {
+        text: 'OK',
+      },
+    ]);
   });
 
   test(`

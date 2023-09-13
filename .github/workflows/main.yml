@@ -98,4 +98,10 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: cd Frontend_RNTLTraining && npx detox test --configuration android.emu.release
+          script: cd Frontend_RNTLTraining && npm run test:detox:android:pipeline
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: detox-artifacts
+          path: artifacts
