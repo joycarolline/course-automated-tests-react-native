@@ -14,7 +14,7 @@ export const login = async (
 ): Promise<LoginResponse> => {
   try {
     const response = await axios.post(
-      'http://localhost:7878/api/login',
+      'http://10.0.2.2:7878/api/login',
       JSON.stringify({
         email: email,
         password: password,

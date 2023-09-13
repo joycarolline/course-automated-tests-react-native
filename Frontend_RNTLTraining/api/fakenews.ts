@@ -11,7 +11,7 @@ interface FakenewsResponse {
 export const fakenews = async (token: string): Promise<FakenewsResponse> => {
   try {
     const response = await axios.get(
-      `http://localhost:7878/api/fakenews?token=${token}`,
+      `http://10.0.2.2:7878/api/fakenews?token=${token}`,
       {
         headers: {
           'Content-Type': 'application/json',

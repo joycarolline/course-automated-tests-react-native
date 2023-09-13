@@ -44,6 +44,7 @@ const Input = ({
         <TextInput
           style={styles.container}
           placeholder={label}
+          accessibilityLabel={label}
           placeholderTextColor="#888888"
           onChangeText={text => setValue(text)}
           value={value}

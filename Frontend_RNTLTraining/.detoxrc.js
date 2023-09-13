@@ -27,9 +27,7 @@ module.exports = {
     },
     'android.debug': {
       type: 'android.apk',
-      //binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
-      binaryPath:
-        'android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk',
+      binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
       build:
         'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug',
       reversePorts: [8081],
@@ -57,7 +55,7 @@ module.exports = {
     emulator: {
       type: 'android.emulator',
       device: {
-        avdName: 'Pixel_6_Pro_Edited_API_33',
+        avdName: 'Pixel_XL_API_27',
       },
     },
     pipe: {
@@ -88,6 +86,10 @@ module.exports = {
       //device: 'emulator',
       device: 'pipe',
       app: 'android.release',
+    },
+    'android.emu.local': {
+      device: 'emulator',
+      app: 'android.debug',
     },
   },
   logger: {

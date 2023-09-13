@@ -14,7 +14,6 @@ import {
 import Input from '../components/Input';
 import Form from '../components/Form';
 import {useNavigation} from '@react-navigation/native';
-
 import colors from '../theme/colors';
 
 const LoginScreen = () => {
@@ -28,7 +27,11 @@ const LoginScreen = () => {
     const res = await login(email, password);
 
     if (res?.token) {
-      Alert.alert('Sucesso', 'Voce está logado.');
+      Alert.alert('Sucesso', 'Voce está logado.', [
+        {
+          text: 'OK',
+        },
+      ]);
       return navigation.navigate('Home', {token: res.token});
     }
 
