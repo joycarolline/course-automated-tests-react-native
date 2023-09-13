@@ -1,4 +1,0 @@
-#Wed Sep 13 19:12:57 BRT 2023
-base.0=/Users/vinicius/Projects/course-automated-tests-react-native/Frontend_RNTLTraining/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

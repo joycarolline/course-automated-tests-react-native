@@ -92,8 +92,8 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      # - name: Detox build
-      #   run: cd Frontend_RNTLTraining && npx detox build --configuration android.emu.release
+      - name: Detox build
+        run: cd Frontend_RNTLTraining && npx detox build --configuration android.emu.release
 
       - name: Detox test
         uses: reactivecircus/android-emulator-runner@v2

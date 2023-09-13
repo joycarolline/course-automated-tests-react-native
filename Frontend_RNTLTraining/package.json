@@ -11,7 +11,7 @@
     "test:coverage": "jest --coverage",
     "build:ios": "react-native run-ios --mode=Debug",
     "test:detox:ios:recorder": "detox test --configuration 'ios.sim.debug' --take-screenshots all --record-videos all",
-    "test:detox:android:pipeline": "detox test --configuration android.emu.release --headless --take-screenshots all --record-videos all"
+    "test:detox:android:pipeline": "detox test --configuration android.emu.release --take-screenshots all --record-videos all"
   },
   "dependencies": {
     "@hookform/devtools": "^4.3.1",
