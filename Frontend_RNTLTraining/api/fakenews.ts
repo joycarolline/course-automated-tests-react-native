@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {apiUrl} from './api.config';
 
 interface FakenewsResponse {
   message?: string;
@@ -10,15 +11,12 @@ interface FakenewsResponse {
 
 export const fakenews = async (token: string): Promise<FakenewsResponse> => {
   try {
-    const response = await axios.get(
-      `http://10.0.2.2:7878/api/fakenews?token=${token}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        timeout: 10000,
+    const response = await axios.get(`${apiUrl}/fakenews?token=${token}`, {
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
+      timeout: 10000,
+    });
 
     return response.data;
   } catch (e: any) {

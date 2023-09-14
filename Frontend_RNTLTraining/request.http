@@ -1,0 +1,7 @@
+POST https://backend-rntl.onrender.com/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "Admin",
+    "password": "admin"
+}

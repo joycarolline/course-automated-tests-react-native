@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {BlurView} from '@react-native-community/blur';
 import colors from '../../theme/colors';
 
 interface IProps {
@@ -12,7 +11,7 @@ const BottomTab = ({token}: IProps) => {
   const navigation = useNavigation();
 
   return (
-    <BlurView style={styles.container} blurType="light" blurAmount={3}>
+    <View style={styles.container}>
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('Home', {
@@ -32,17 +31,17 @@ const BottomTab = ({token}: IProps) => {
       <TouchableOpacity onPress={() => navigation.navigate('Welcome')}>
         <Image source={require('../../assets/Logout.png')} />
       </TouchableOpacity>
-    </BlurView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',

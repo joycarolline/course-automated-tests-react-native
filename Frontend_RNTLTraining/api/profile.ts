@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {apiUrl} from './api.config';
 
 export const profile = async (
   token: string,
@@ -6,7 +7,7 @@ export const profile = async (
 ) => {
   try {
     const response = await axios.put(
-      `http://localhost:7878/api/user?token=${token}`,
+      `${apiUrl}/user?token=${token}`,
       {
         email: email,
         birthday: birthday,

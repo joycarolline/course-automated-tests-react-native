@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {apiUrl} from './api.config';
 
 type LoginResponse = {
   data?: {
@@ -14,7 +15,7 @@ export const login = async (
 ): Promise<LoginResponse> => {
   try {
     const response = await axios.post(
-      'http://10.0.2.2:7878/api/login',
+      `${apiUrl}/login`,
       JSON.stringify({
         email: email,
         password: password,

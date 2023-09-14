@@ -55,7 +55,7 @@ module.exports = {
     emulator: {
       type: 'android.emulator',
       device: {
-        avdName: 'Pixel_XL_API_27',
+        avdName: 'test',
       },
     },
     pipe: {
@@ -83,7 +83,6 @@ module.exports = {
       app: 'android.release',
     },
     'android.emu.release': {
-      //device: 'emulator',
       device: 'pipe',
       app: 'android.release',
     },
@@ -91,8 +90,5 @@ module.exports = {
       device: 'emulator',
       app: 'android.debug',
     },
-  },
-  logger: {
-    level: 'debug',
   },
 };

@@ -6,7 +6,7 @@ const { verifyToken, SignToken } = require("./tokenverify");
 const generateFakeNewsList = require("./fakenews");
 
 const app = express();
-const port = 7878;
+const port = process.env.PORT || 7878;
 
 app.use(bodyParser.json());
 
