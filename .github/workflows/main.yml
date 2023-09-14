@@ -45,10 +45,10 @@ jobs:
         run: cd Frontend_RNTLTraining && npm install
       
       - name: Generate .env
-        run: cd Frontend_RNTLTraining && echo 'BACKEND_URL_API="http://10.0.2.2:7878"' > .env
+        run: cd Frontend_RNTLTraining && echo 'BACKEND_URL_API="https://backend-rntl.onrender.com"' > .env
 
-      - name: Start Backend   
-        run: cd Backend_FakeApi && npm install && npm run start
+      # - name: Start Backend   
+      #   run: cd Backend_FakeApi && npm install && npm run start
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -63,6 +63,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
+          target: playstore
           emulator-options: -dns-server 8.8.8.8
           script: cd Frontend_RNTLTraining && npm run test:detox:android:pipeline
 
