@@ -45,7 +45,10 @@ jobs:
         run: cd Frontend_RNTLTraining && npm install
       
       - name: Generate .env
-        run: cd Frontend_RNTLTraining && echo 'BACKEND_URL_API="https://rntl-training.herokuapp.com"' > .env
+        run: cd Frontend_RNTLTraining && echo 'BACKEND_URL_API="http://10.0.2.2:7878"' > .env
+
+      - name: Start Backend   
+        run: cd Backend_FakeApi && npm install && npm run start
 
       - name: Setup Java
         uses: actions/setup-java@v3
