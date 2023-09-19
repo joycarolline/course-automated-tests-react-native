@@ -63,8 +63,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          target: playstore
-          emulator-options: -dns-server 8.8.8.8
+          target: google_apis
           script: cd Frontend_RNTLTraining && npm run test:detox:android:pipeline
 
       - name: Upload artifacts
