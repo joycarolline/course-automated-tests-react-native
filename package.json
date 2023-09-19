@@ -2,7 +2,7 @@
   "name": "course-automated-tests-react-native",
   "version": "1.0.0",
   "scripts": {
-    "test": "cd Frontend_RNTLTraining && npm test"
+    "test": "cd Frontend && npm test"
   },
   "author": "",
   "license": "ISC"

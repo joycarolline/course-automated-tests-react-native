@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     maxHeight: 60,
     borderColor: colors.gray[100],
     borderTopWidth: 1,
+    backgroundColor: '#f2f2f2',
   },
 });
 

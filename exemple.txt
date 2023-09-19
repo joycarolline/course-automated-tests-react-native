@@ -1,0 +1,11 @@
+Linguagem de Programacao (Alto Nivel)
+- Javascript - Interpretado
+- Java - Compilado
+- C++ - Compilado
+- Rust - Compilado
+- C# - Compilado
+- Ruby - Interpretado
+- Python - Interpretado (Mas tb compilado)
+- PHP - Interpretado (Mas tb poder cacheado em runtime)
+
+

@@ -4,4 +4,4 @@ sidebar_position: 1
 
 # Bem Vindo
 
-skaidjoaijda
+https://github.com/ReactiveCircus/android-emulator-runner
