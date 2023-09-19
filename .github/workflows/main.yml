@@ -24,10 +24,10 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Custom Shell - Install Dependencies
-        run: cd Frontend_RNTLTraining && npm install
+        run: cd Frontend && npm install
 
       - name: Custom Shell - Running Unit Tests
-        run: cd Frontend_RNTLTraining && npm run test
+        run: cd Frontend && npm run test
 
   e2e-android:
     runs-on: macos-latest
@@ -42,10 +42,10 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install dependencies
-        run: cd Frontend_RNTLTraining && npm install
+        run: cd Frontend && npm install
       
       - name: Generate .env
-        run: cd Frontend_RNTLTraining && echo 'BACKEND_URL_API="https://backend-rntl.onrender.com"' > .env
+        run: cd Frontend && echo 'BACKEND_URL_API="https://backend-rntl.onrender.com"' > .env
 
       # - name: Start Backend   
       #   run: cd Backend_FakeApi && npm install && npm run start
@@ -57,7 +57,7 @@ jobs:
           java-version: 17
 
       - name: Detox build
-        run: cd Frontend_RNTLTraining && npx detox build --configuration android.emu.release
+        run: cd Frontend && npx detox build --configuration android.emu.release
 
       - name: Detox test
         uses: reactivecircus/android-emulator-runner@v2
@@ -65,11 +65,11 @@ jobs:
           api-level: 29
           target: playstore
           emulator-options: -dns-server 8.8.8.8
-          script: cd Frontend_RNTLTraining && npm run test:detox:android:pipeline
+          script: cd Frontend && npm run test:detox:android:pipeline
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: detox-artifacts
-          path: Frontend_RNTLTraining/artifacts/**/**/*
+          path: Frontend/artifacts/**/**/*
