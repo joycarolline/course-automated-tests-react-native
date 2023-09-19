@@ -47,9 +47,6 @@ jobs:
       - name: Generate .env
         run: cd Frontend && echo 'BACKEND_URL_API="https://backend-rntl.onrender.com"' > .env
 
-      # - name: Start Backend   
-      #   run: cd Backend_FakeApi && npm install && npm run start
-
       - name: Setup Java
         uses: actions/setup-java@v3
         with:

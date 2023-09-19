@@ -14,6 +14,8 @@ Reference: https://support.apple.com/guide/mac-help/change-dns-settings-on-mac-m
 
 # Android Environment Variables
 
+Install JAVA: https://developer.android.com/build/jdks 
+
 Edit shell configurations
 ```sh
 vim ~/.zshrc
