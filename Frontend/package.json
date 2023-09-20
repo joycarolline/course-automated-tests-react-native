@@ -12,6 +12,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "//": "DETOX",
+    "detox:clear:build": "detox rebuild-framework-cache",
     "detox:build:ios:debug": "detox build --configuration ios.sim.debug",
     "detox:test:ios:debug": "detox test --configuration ios.sim.debug",
     "detox:build:ios:release": "detox build --configuration ios.sim.release",

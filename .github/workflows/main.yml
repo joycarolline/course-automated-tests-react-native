@@ -138,7 +138,7 @@ jobs:
       #   run: cd Frontend && npm run detox:build:ios
 
       - name: Detox rebuild framework cache
-        run: cd Frontend && npm detox rebuild-framework-cache
+        run: cd Frontend && npm run detox:clear:build
 
       - name: Detox test
         run: cd Frontend && npm run detox:test:ios:pipeline
