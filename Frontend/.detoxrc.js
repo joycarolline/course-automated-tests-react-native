@@ -100,4 +100,13 @@ module.exports = {
       app: 'android.debug',
     },
   },
+  artifacts: {
+    plugins: {
+      video: {
+        simulator: {
+          codec: 'h264',
+        },
+      },
+    },
+  },
 };
