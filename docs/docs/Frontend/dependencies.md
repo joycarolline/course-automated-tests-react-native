@@ -4,8 +4,27 @@ title: Dependencies
 ---
 # Dependencies
 
-# Production Dependencies (Frontend/package.json)
+# Production Dependencies
 
+```json
+"dependencies": {
+    "@hookform/devtools": "^4.3.1",
+    "@hookform/resolvers": "^3.3.1",
+    "@react-native-async-storage/async-storage": "^1.19.2",
+    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/native-stack": "^6.9.13",
+    "axios": "^1.4.0",
+    "jwt-decode": "^3.1.2",
+    "react": "18.2.0",
+    "react-hook-form": "^7.45.4",
+    "react-native": "0.72.4",
+    "react-native-config": "^1.5.1",
+    "react-native-safe-area-context": "^4.7.1",
+    "react-native-screens": "^3.24.0"
+  },
+```
+
+References:
 - https://github.com/luggit/react-native-config
 - https://react-hook-form.com/
 - https://github.com/auth0/jwt-decode
@@ -14,12 +33,6 @@ title: Dependencies
 - https://github.com/react-native-async-storage/async-storage
 
 # Dev Dependencies 
-Check (Frontend/package.json) devDependencies
-- https://wix.github.io/Detox/
-- https://jestjs.io/
-- https://www.typescriptlang.org/
-- https://legacy.reactjs.org/docs/test-renderer.html
-- https://testing-library.com/
 
 ```json
 "devDependencies": {
@@ -44,3 +57,10 @@ Check (Frontend/package.json) devDependencies
     "typescript": "4.8.4"
   },
 ```
+
+References:
+- https://wix.github.io/Detox/
+- https://jestjs.io/
+- https://www.typescriptlang.org/
+- https://legacy.reactjs.org/docs/test-renderer.html
+- https://testing-library.com/

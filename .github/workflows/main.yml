@@ -29,9 +29,50 @@ jobs:
       - name: Custom Shell - Running Unit Tests
         run: cd Frontend && npm run test
 
-  e2e-android:
-    runs-on: macos-latest
+  # e2e-android:
+  #   runs-on: macos-latest
 
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version-file: .nvmrc
+
+  #     - name: Install dependencies
+  #       run: cd Frontend && npm install
+      
+  #     - name: Generate .env
+  #       run: cd Frontend && echo 'BACKEND_URL_API="https://backend-rntl.onrender.com"' > .env
+
+  #     - name: Setup Java
+  #       uses: actions/setup-java@v3
+  #       with:
+  #         distribution: temurin
+  #         java-version: 17
+
+  #     - name: Detox build
+  #       run: cd Frontend && npx detox build --configuration android.emu.release
+
+  #     - name: Detox test
+  #       uses: reactivecircus/android-emulator-runner@v2
+  #       with:
+  #         api-level: 29
+  #         target: playstore
+  #         emulator-options: -dns-server 8.8.8.8
+  #         script: cd Frontend && npm run test:detox:android:pipeline
+
+  #     - name: Upload artifacts
+  #       uses: actions/upload-artifact@v3
+  #       if: always()
+  #       with:
+  #         name: detox-artifacts
+  #         path: Frontend/artifacts/**/**/*
+
+  e2e-ios:
+    runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -41,32 +82,57 @@ jobs:
         with:
           node-version-file: .nvmrc
 
-      - name: Install dependencies
+      - name: Install node_modules dependencies
         run: cd Frontend && npm install
-      
+        
       - name: Generate .env
         run: cd Frontend && echo 'BACKEND_URL_API="https://backend-rntl.onrender.com"' > .env
 
-      - name: Setup Java
-        uses: actions/setup-java@v3
+      - name: Install macOS dependencies
+        run: |
+          brew tap wix/brew
+          brew install applesimutils
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
+          HOMEBREW_NO_INSTALL_CLEANUP: 1
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          distribution: temurin
-          java-version: 17
+          ruby-version: '2.7'
+          bundler-cache: true
+
+      - name: Cache CocoaPods
+        id: cache-cocoapods
+        uses: actions/cache@v3
+        with:
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install CocoaPods
+        if: steps.cache-cocoapods.outputs.cache-hit != 'true'
+        run: cd Frontend/ios && pod install
+
+      - name: Cache Detox build
+        id: cache-detox-build
+        uses: actions/cache@v3
+        with:
+          path: ios/build
+          key: ${{ runner.os }}-detox-build
+          restore-keys: |
+            ${{ runner.os }}-detox-build
 
       - name: Detox build
-        run: cd Frontend && npx detox build --configuration android.emu.release
+        run: cd Frontend && npm run detox:build:ios
 
       - name: Detox test
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          target: playstore
-          emulator-options: -dns-server 8.8.8.8
-          script: cd Frontend && npm run test:detox:android:pipeline
+        run: cd Frontend && npm run test:detox:ios:recorder -- --cleanup --headless --record-logs all
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
         if: always()
+        uses: actions/upload-artifact@v3
         with:
           name: detox-artifacts
-          path: Frontend/artifacts/**/**/*
+          path: artifacts

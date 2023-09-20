@@ -5,20 +5,26 @@ title: Getting Started
 
 # Getting Started
 
-Clone Repository
+**Clone Repository**
 ```sh
 git clone https://github.com/beadev-net/course-automated-tests-react-native.git
 ```
 
-Install node_modules dependencies
+**Install node_modules dependencies**
 ```sh
 cd Frontend && npm install
+```
+
+**Create .env file and change to correct Config Variables**
+```sh
+cp .env.example .env
 ```
 
 ---
 
 # IOS Only*
-Install cocoapods dependencies
+
+**Install cocoapods dependencies**
 ```sh
 cd ios && pod install
 ```
@@ -26,21 +32,43 @@ cd ios && pod install
 ---
 
 # Run React Native
-Android
+**Android**
 ```sh
 npm run android
 ```
 
-IOS
+**IOS**
 ```sh
 npm run ios
 ```
 
 ---
 
-# Run Unit tests
+# Run Unit Tests
 
 ```sh
 npm run test
 npm run test:coverage
+```
+
+---
+
+# Run E2E Tests
+
+:::caution
+
+It is only work if you have installed the Android or IOS emulator correctly. [Reference](/docs/category/emulator)
+
+:::
+
+**Android**
+```sh
+npm run build:detox:android
+npm run test:detox:android
+```
+
+**IOS**
+```sh
+npm run build:detox:ios
+npm run test:detox:ios
 ```
