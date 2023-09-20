@@ -96,24 +96,24 @@ jobs:
           HOMEBREW_NO_AUTO_UPDATE: 1
           HOMEBREW_NO_INSTALL_CLEANUP: 1
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '2.7'
-          bundler-cache: true
+      # - name: Setup Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: '2.7'
+      #     bundler-cache: true
 
-      - name: Cache CocoaPods
-        id: cache-cocoapods
-        uses: actions/cache@v3
-        with:
-          path: ios/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
+      # - name: Cache CocoaPods
+      #   id: cache-cocoapods
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ios/Pods
+      #     key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pods-
 
-      - name: Install CocoaPods
-        if: steps.cache-cocoapods.outputs.cache-hit != 'true'
-        run: cd Frontend/ios && pod install
+      # - name: Install CocoaPods
+      #   if: steps.cache-cocoapods.outputs.cache-hit != 'true'
+      #   run: cd Frontend/ios && pod install
 
       - name: Cache Detox build
         id: cache-detox-build
@@ -124,15 +124,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-detox-build
 
-      - name: Detox build
-        run: cd Frontend && npm run detox:build:ios
+      # - name: Detox build
+      #   run: cd Frontend && npm run detox:build:ios
 
       - name: Detox test
-        run: cd Frontend && npm run test:detox:ios:recorder -- --cleanup --headless --record-logs all
+        run: cd Frontend && npm run detox:test:ios:pipeline -- --record-logs all
 
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: detox-artifacts
-          path: artifacts
+          path: Frontend/artifacts/**/**/*

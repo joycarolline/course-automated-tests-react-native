@@ -12,18 +12,23 @@ module.exports = {
   apps: {
     'ios.debug': {
       type: 'ios.app',
-      //binaryPath: 'ios/build/Build/Products/Debug-iphonesimulator/YOUR_APP.app',
       binaryPath:
-        '/Users/vinicius/Library/Developer/Xcode/DerivedData/RNTLTraining-cbukiahbzbecrxdimfaghtnsvkir/Build/Products/Debug-iphonesimulator/RNTLTraining.app',
+        'ios/build/Build/Products/Debug-iphonesimulator/RNTLTraining.app',
       build:
         'xcodebuild -workspace ios/RNTLTraining.xcworkspace -scheme RNTLTraining -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build',
     },
     'ios.release': {
       type: 'ios.app',
       binaryPath:
-        'ios/build/Build/Products/Release-iphonesimulator/YOUR_APP.app',
+        'ios/build/Build/Products/Release-iphonesimulator/RNTLTraining.app',
       build:
-        'xcodebuild -workspace ios/YOUR_APP.xcworkspace -scheme YOUR_APP -configuration Release -sdk iphonesimulator -derivedDataPath ios/build',
+        'xcodebuild -workspace ios/RNTLTraining.xcworkspace -scheme RNTLTraining -configuration Release -sdk iphonesimulator -derivedDataPath ios/build',
+    },
+    'ios.release.pipeline': {
+      type: 'ios.app',
+      binaryPath: 'build/RNTLTraining.app',
+      build:
+        'xcodebuild -workspace ios/RNTLTraining.xcworkspace -scheme RNTLTraining -configuration Release -sdk iphonesimulator -derivedDataPath ios/build',
     },
     'android.debug': {
       type: 'android.apk',
@@ -73,6 +78,10 @@ module.exports = {
     'ios.sim.release': {
       device: 'simulator',
       app: 'ios.release',
+    },
+    'ios.sim.release.pipeline': {
+      device: 'simulator',
+      app: 'ios.release.pipeline',
     },
     'android.att.debug': {
       device: 'attached',

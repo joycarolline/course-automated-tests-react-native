@@ -1,8 +1,6 @@
 import {device} from 'detox';
 import Config from 'react-native-config';
 
-console.info('CONFIG: ', Config);
-
 const loginFlow = async () => {
   const enterBtn = await element(by.label('Entrar')).atIndex(0);
 
