@@ -4,6 +4,12 @@
 
 [![My First Workflow](https://github.com/beadev-net/course-automated-tests-react-native/actions/workflows/main.yml/badge.svg)](https://github.com/beadev-net/course-automated-tests-react-native/actions/workflows/main.yml)
 
+[![Android Detox Test](https://github.com/beadev-net/course-automated-tests-react-native/actions/workflows/android.yml/badge.svg)](https://github.com/beadev-net/course-automated-tests-react-native/actions/workflows/android.yml)
+
+[![IOS Detox Test](https://github.com/beadev-net/course-automated-tests-react-native/actions/workflows/ios.yml/badge.svg)](https://github.com/beadev-net/course-automated-tests-react-native/actions/workflows/ios.yml)
+
+[![pages-build-deployment](https://github.com/beadev-net/course-automated-tests-react-native/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/beadev-net/course-automated-tests-react-native/actions/workflows/pages/pages-build-deployment)
+
 #### Colaboradores:
 - [FIGMA](http://figma.com/file/n2bVyegHkwUjiIIaz9rHyj/Untitled?type=design&node-id=4-10&mode=design&t=YmpaAUK7oZ4z16zT-0) by **Joyce Caroline Santos**
 - Código + Testes by **Isaias Melo**

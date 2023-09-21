@@ -53,7 +53,7 @@ yarn-error.log
 
 # Bundle artifact
 *.jsbundle
-!build/RNTLTraining.app/main.jsbundle
+!build/release-ios/RNTLTraining.app/main.jsbundle
 
 # Ruby / CocoaPods
 /ios/Pods/

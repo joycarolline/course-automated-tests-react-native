@@ -26,7 +26,7 @@ module.exports = {
     },
     'ios.release.pipeline': {
       type: 'ios.app',
-      binaryPath: 'build/RNTLTraining.app',
+      binaryPath: 'build/release-ios/RNTLTraining.app',
       build:
         'xcodebuild -workspace ios/RNTLTraining.xcworkspace -scheme RNTLTraining -configuration Release -sdk iphonesimulator -derivedDataPath ios/build',
     },
@@ -103,7 +103,7 @@ module.exports = {
       device: 'pipeline',
       app: 'android.release.pipeline',
     },
-    'android.emu.local': {
+    'android.emu.debug': {
       device: 'emulator',
       app: 'android.debug',
     },
