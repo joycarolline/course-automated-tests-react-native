@@ -13,15 +13,18 @@
     "test:coverage": "jest --coverage",
     "//": "DETOX",
     "detox:clear:build": "detox rebuild-framework-cache",
+    "//": "<<<< IOS DETOX>>>> ",
     "detox:build:ios:debug": "detox build --configuration ios.sim.debug",
     "detox:test:ios:debug": "detox test --configuration ios.sim.debug",
     "detox:build:ios:release": "detox build --configuration ios.sim.release",
     "detox:test:ios:release": "detox test --configuration ios.sim.release",
     "detox:test:ios:pipeline": "detox test --configuration ios.sim.release.pipeline --take-screenshots all --record-videos all --loglevel verbose",
+    "//": "<<<< ANDROID DETOX >>>>",
     "detox:build:android": "detox build --configuration android.emu.local",
     "detox:test:android": "detox test --configuration android.emu.local",
     "detox:test:ios:record": "detox test --configuration 'ios.sim.debug' --take-screenshots all --record-videos all",
-    "detox:test:android:pipeline": "detox test --configuration android.emu.release --take-screenshots all --record-videos all"
+    "detox:build:android:release": "detox build --configuration android.emu.release.pipeline",
+    "detox:test:android:pipeline": "detox test --configuration android.emu.release.pipeline --take-screenshots all --record-videos all --loglevel verbose"
   },
   "dependencies": {
     "@hookform/devtools": "^4.3.1",
