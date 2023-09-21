@@ -45,7 +45,9 @@ module.exports = {
     },
     'android.release.pipeline': {
       type: 'android.apk',
-      binaryPath: 'build/release-android/app-release.apk',
+      binaryPath: 'build/release-android/release/app-release.apk',
+      testBinaryPath:
+        'build/release-android/androidTest/release/app-release-androidTest.apk',
       build:
         'cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release',
     },
@@ -99,7 +101,7 @@ module.exports = {
     },
     'android.emu.release.pipeline': {
       device: 'pipeline',
-      app: 'android.release',
+      app: 'android.release.pipeline',
     },
     'android.emu.local': {
       device: 'emulator',

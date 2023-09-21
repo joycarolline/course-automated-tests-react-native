@@ -22,9 +22,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
+      
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: Frontend/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('Frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node_modules-
 
-      - name: Custom Shell - Install Dependencies
+      - name: Install node_modules dependencies
         run: cd Frontend && npm install
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - name: Custom Shell - Running Unit Tests
         run: cd Frontend && npm run test

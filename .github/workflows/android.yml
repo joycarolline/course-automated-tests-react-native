@@ -1,4 +1,4 @@
-name: 'IOS Detox Test'
+name: 'Android Detox Test'
 
 on: 
   push:
@@ -57,8 +57,7 @@ jobs:
         with:
           api-level: 28
           target: default
-          emulator-options: -dns-server 8.8.8.8
-          script: cd Frontend && npm run test:detox:android:pipeline
+          script: cd Frontend && npm run detox:test:android:pipeline
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
