@@ -1,0 +1,24 @@
+events { }
+
+http {
+    upstream backend1 {
+        server host.docker.internal:4000 weight=5;
+    }
+
+    upstream backend2 {
+        server host.docker.internal:4444 weight=5;
+        
+    }
+    
+    server {
+        location / {
+            proxy_pass http://backend1;
+        }
+
+        location /en {
+            rewrite /en/(.*) /$1 break;
+
+            proxy_pass http://backend2;
+        }
+    }
+}

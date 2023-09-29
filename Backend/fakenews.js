@@ -39,7 +39,11 @@ const generateFakeNewsList = (quantity) => {
     fakeNewsList.push(fakeNews);
   }
 
+  console.log(fakeNewsList);
+
   return fakeNewsList;
 };
 
-module.exports = generateFakeNewsList;
+generateFakeNewsList(2);
+
+//module.exports = generateFakeNewsList;

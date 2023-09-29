@@ -1,0 +1,41 @@
+### Login
+POST http://localhost:7878/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "Admin",
+    "password": "admin"
+}
+
+### Healthcheck
+
+GET http://localhost:7878/healthcheck HTTP/1.1
+content-type: application/json
+
+
+### FakeNews
+
+GET http://localhost:7878/api/fakenews HTTP/1.1
+content-type: application/json
+
+### Users Profile
+
+PUT http://localhost:7878/api/users?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluIiwiaWF0IjoxNjk1ODU0NzE4LCJleHAiOjE2OTU4NTgzMTh9.U-YaJiMbTqwqfk6Uv0BvBZGRgHAlv_OSaJ0U-o5l7iQ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Admin",
+    "email": "Admin",
+    "birthday": "2020-01-01"
+}
+
+### Register
+POST http://localhost:8080/api/register HTTP/1.1
+content-type: application/json
+
+{
+    "email": "Admin",
+    "password": "admin",
+    "name": "Admin",
+    "birthday": "2020-01-01"
+}

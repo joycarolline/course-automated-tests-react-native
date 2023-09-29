@@ -1,0 +1,74 @@
+version: "3.9"
+
+services:
+  web:
+    image: nginx
+    volumes:
+    - .docker/nginx/nginx.conf.template:/etc/nginx/nginx.conf
+    ports:
+    - "8080:80"
+    networks:
+      - default
+    depends_on:
+      - app1
+      - app2
+
+  app1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "4000:7878"
+    networks:
+      - default
+    expose:
+      - 4000
+    environment:
+      - API_LANG=pt
+
+  app2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "4444:7878"
+    networks:
+      - default
+    expose:
+      - 4444
+    environment:
+      - API_LANG=en
+
+  mongodb:
+    image: mongo:6.0
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    networks:
+      - default
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_URL: mongodb://root:root@mongodb:27017/
+    networks:
+      - default
+
+  
+networks:
+  default:
+    driver: bridge
