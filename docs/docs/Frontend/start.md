@@ -63,12 +63,12 @@ It is only work if you have installed the Android or IOS emulator correctly. [Re
 
 **Android**
 ```sh
-npm run build:detox:android
-npm run test:detox:android
+npm run detox:build:android:debug
+npm run detox:test:android:debug
 ```
 
 **IOS**
 ```sh
-npm run build:detox:ios
-npm run test:detox:ios
+npm run detox:build:ios:debug
+npm run detox:test:ios:debug
 ```
